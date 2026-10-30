@@ -1132,6 +1132,122 @@ h1,.stair .l1,.stair .l2{
 .closedbanner strong{color:var(--ink);font-weight:700}
 .closedbanner a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
 .stalecheck{color:var(--amber) !important}
+
+/* ---------------- venue page ---------------- */
+/* The scrim is the page's own ink, not pure black, and it goes denser in dark
+   mode — a black scrim over a dark page is invisible. 0.5 is the common default. */
+.venuepage{
+  position:fixed;inset:0;z-index:85;display:grid;place-items:center;
+  background:color-mix(in srgb, var(--ink) 50%, transparent);
+  backdrop-filter:blur(4px);
+  padding:16px;
+  animation:vpfade .15s var(--ease);
+}
+.venuepage[hidden]{display:none}
+[data-theme="dark"] .venuepage{
+  background:color-mix(in srgb, var(--ink) 74%, transparent);
+}
+@keyframes vpfade{from{opacity:0}to{opacity:1}}
+@keyframes vprise{from{opacity:0;transform:translateY(4px) scale(.98)}
+                  to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .venuepage,.vpbox{animation:none !important}
+}
+
+.vpbox{
+  background:var(--surface);
+  border:1.5px solid var(--line);
+  width:min(760px,100%);
+  max-height:min(86vh,860px);
+  display:flex;flex-direction:column;
+  box-shadow:10px 10px 0 var(--ink);
+  animation:vprise .15s var(--ease);
+  outline:none;
+}
+[data-theme="dark"] .vpbox{
+  border-width:1px;
+  border-color:color-mix(in srgb, var(--paper) 22%, transparent);
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--paper) 14%, transparent);
+}
+.vphead{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px 20px 14px;border-bottom:1.5px solid var(--line);
+}
+.vptitle{
+  margin:0;font-family:var(--font-display);text-transform:uppercase;
+  font-size:clamp(22px,3.6vw,34px);line-height:1;letter-spacing:0.012em;
+}
+.vpmeta{
+  margin:8px 0 0;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--muted);
+}
+.vpclose{
+  margin-left:auto;flex:0 0 auto;
+  font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  padding:7px 11px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;
+}
+.vpclose:hover{background:var(--ink);color:var(--paper)}
+.vpbody{overflow:auto;padding:6px 20px 20px}
+.vpevent{
+  display:grid;grid-template-columns:96px 1fr;gap:4px 16px;
+  padding:14px 0;border-bottom:1px solid var(--line-soft);
+}
+.vpevent:last-child{border-bottom:0}
+.vpwhen{
+  font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;padding-top:3px;
+}
+.vpname{
+  font-family:var(--font-display);text-transform:uppercase;font-size:17px;line-height:1.05;
+  letter-spacing:0.012em;margin:0;
+}
+.vpgist{margin:5px 0 0;font-size:13px;line-height:1.45;color:var(--muted)}
+.vpopen{
+  grid-column:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--accent);background:none;border:0;padding:6px 0 0;
+  cursor:pointer;text-align:left;
+}
+.vpempty{font-size:13px;color:var(--muted);padding:16px 0}
+@media (max-width:600px){
+  .vpevent{grid-template-columns:1fr}
+  .vpopen{grid-column:1}
+  .vpbox{max-height:92vh}
+}
+
+/* ---------------- accessibility rows ---------------- */
+.access{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0}
+.access dt{
+  font-family:var(--font-mono);font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);padding-top:3px;white-space:nowrap;
+}
+.access dd{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+.access dd:last-child{color:var(--muted);font-style:italic}
+
+/* venue list inside the overlay */
+.vpvenlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;padding:14px 0}
+.vpven{
+  display:flex;align-items:center;gap:8px;justify-content:space-between;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;
+  padding:10px 12px;border:1.5px solid var(--line);background:transparent;color:var(--ink);
+  cursor:pointer;text-align:left;
+}
+.vpven:hover{background:var(--ink);color:var(--paper)}
+.vpven .vcount{color:var(--accent);font-weight:700}
+.vpven:hover .vcount{color:var(--accent)}
+
+.vpback{
+  font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  padding:7px 11px;border:1.5px solid var(--line);background:transparent;color:var(--ink);
+  cursor:pointer;margin-right:8px;
+}
+.vpback:hover{background:var(--ink);color:var(--paper)}
+.vpcount{
+  display:inline-block;margin-left:8px;padding:2px 7px;
+  font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;
+  background:var(--accent);color:var(--accent-ink);vertical-align:middle;
+}
+.vpactions{display:flex;align-items:flex-start;margin-left:auto}
+.vpclose{margin-left:0}
 </style>
 </head>
 <body>
@@ -1142,6 +1258,7 @@ h1,.stair .l1,.stair .l2{
     <div class="brand">
       <span class="mark">Delhi<i>,</i> Free</span>
       <span class="edition">Edition 01 · 29 Oct — 30 Nov 2026</span>
+      
       <button class="theme" id="themeBtn" type="button" aria-label="Switch colour theme">◐ <span>Theme</span></button>
     </div>
 
@@ -1232,6 +1349,7 @@ h1,.stair .l1,.stair .l2{
       <span class="count" id="count" aria-live="polite"></span>
       <button id="clearAll" type="button" hidden>Clear filters</button>
       <button id="expandAll" type="button">Open all programmes</button>
+      <button id="venueBtn" type="button" title="See every venue with something on">Browse venues</button>
       <button id="surprise" type="button" title="Pick one at random">Surprise me</button>
       <button id="panelToggle" type="button" aria-expanded="true" aria-controls="controls">Hide ▲</button>
     </div>
@@ -1293,6 +1411,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food at the gallery.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Qutub Minar (Yellow), then a 10-minute walk down Anuvrat Marg.</dd><dt>How long</dt><dd>30–40 minutes.</dd><dt>Worth knowing</dt><dd>Runs to 15 November, so this is one of the first things to lapse.</dd></dl>
@@ -1364,6 +1483,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing on site; Lado Sarai has a couple of cafés.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Saket (Yellow/Magenta), then a 10-minute auto along Mehrauli-Badarpur Road.</dd><dt>How long</dt><dd>30–45 minutes.</dd><dt>Worth knowing</dt><dd>Lado Sarai has five or six galleries within walking distance — this is the one to pair with others.</dd></dl>
@@ -1435,6 +1555,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food; Gulmohar Park's cafés are a short walk.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, open to all.</dd><dt>Getting there</dt><dd>Green Park (Yellow) or Hauz Khas (Yellow/Magenta), then a 10-minute walk.</dd><dt>How long</dt><dd>20–40 minutes.</dd><dt>Worth knowing</dt><dd>Closed Sundays. Nature Morte also runs a second space at The Dhan Mill in Chhatarpur — check which one before you go.</dd></dl>
@@ -1506,6 +1627,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing at the venue — Khan Market is a ten-minute walk.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, open to all — no registration.</dd><dt>Getting there</dt><dd>Khan Market (Violet) 1 km, or Udyog Bhawan (Yellow) 1.2 km.</dd><dt>How long</dt><dd>45–90 minutes for both floors.</dd><dt>Worth knowing</dt><dd>Ground and first floor — people often see only one. The archival room upstairs is the reason to go.</dd></dl>
@@ -1577,6 +1699,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing at the gallery — Defence Colony market is two minutes away and full of options.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free. Walk in, no ticket, no registration.</dd><dt>Getting there</dt><dd>Lajpat Nagar (Violet/Pink) or Moolchand (Violet), then a short auto to Defence Colony market.</dd><dt>How long</dt><dd>30–45 minutes for the main room.</dd><dt>Worth knowing</dt><dd>Closed Sundays. Runs to 18 November. Galleries rarely put prices on the wall — ask at the desk for the price list if you're curious.</dd></dl>
@@ -1648,6 +1771,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing laid on for the opening night — the IIC café is open, and the festival's food counters only start on the 30th.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free. No ticket, no registration — walk in and sit.</dd><dt>Getting there</dt><dd>Khan Market (Violet) or Jor Bagh (Yellow), both about 1.5 km.</dd><dt>How long</dt><dd>The keynote runs 60–75 minutes; stay for the exhibition opening after.</dd><dt>Worth knowing</dt><dd>The exhibition is in the <b>Annexe</b> building, the talk is in the <b>main</b> building. Two different doors.</dd></dl>
@@ -1718,6 +1842,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Sweets and snack stalls as part of the exhibition — nothing substantial.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Greater Kailash (Magenta) or Kailash Colony (Violet), then a 10-minute walk to C Block.</dd><dt>How long</dt><dd>20–30 minutes to browse — it runs 11 am to 9 pm daily to 6 November.</dd><dt>Worth knowing</dt><dd>Runs daily to 6 November, so there's no urgency.</dd></dl>
@@ -1788,6 +1913,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing at the dargah itself. The lane outside is full of kebab and biryani shops — eat before or after.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, no ticket. Head covered, shoes off at the lane.</dd><dt>Getting there</dt><dd>JLN Stadium (Violet) or Jangpura, then a short auto — ask for the dargah gate, not the basti.</dd><dt>How long</dt><dd>60–90 minutes from sunset; longer on Urs nights.</dd><dt>Worth knowing</dt><dd>Thursdays only. Women may enter the courtyard but not the inner chamber.</dd></dl>
@@ -1858,6 +1984,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing at IGNCA; Connaught Place is a fifteen-minute walk.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, walk in.</dd><dt>Getting there</dt><dd>Udyog Bhawan (Yellow) or Shivaji Stadium (Airport Express), then a short walk.</dd><dt>How long</dt><dd>20–40 minutes.</dd><dt>Worth knowing</dt><dd>IGNCA is <b>closed at weekends</b> — go on a weekday. Hours about 10:30 am to 5:30 pm.</dd></dl>
@@ -1929,6 +2056,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food. Eat first; Khan Market is ten minutes away afterwards.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet). Gate 1 is nearest the tombs.</dd><dt>How long</dt><dd>About 2 hours, 6 am sharp.</dd><dt>Worth knowing</dt><dd>Binoculars if you own them; the group is usually 10–20 people. Dark and cold at 6 am.</dd></dl>
@@ -1999,6 +2127,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Food stalls and a cafeteria inside the venue.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free visitor pass, but <b>online registration is compulsory</b>. Entry only with the confirmation and a photo ID.</dd><dt>Getting there</dt><dd>Mandi House (Blue/Violet), about a 15-minute walk. Baroda House bus stop is closer.</dd><dt>How long</dt><dd>2–3 hours for the halls.</dd><dt>Worth knowing</dt><dd>No wi-fi, no single-use plastic, food stalls inside. Runs 30 Oct – 1 Nov.</dd></dl>
@@ -2069,6 +2198,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Food stalls across the lawns — snacks and festive sweets.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, open to all.</dd><dt>Getting there</dt><dd>JLN Stadium (Violet) or Khan Market. The lawns are behind The Oberoi.</dd><dt>How long</dt><dd>1–2 hours.</dd><dt>Worth knowing</dt><dd>Carry cash — networks jam and UPI fails at peak hours. Daily to 5 November.</dd></dl>
@@ -2139,6 +2269,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>The Odia food counter opens at 8 pm straight after the recital — Taste of Kalinga. Part of the festival, paid per plate.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, first-come. Outdoors, so capacity is generous.</dd><dt>Getting there</dt><dd>Khan Market (Violet), 1.5 km.</dd><dt>How long</dt><dd>About 90 minutes, then food and a film if you stay.</dd><dt>Worth knowing</dt><dd>The lawns cool sharply after 8 pm — bring a layer.</dd></dl>
@@ -2209,6 +2340,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food, though Triveni's café is open in the same complex.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, no registration.</dd><dt>Getting there</dt><dd>Mandi House (Blue/Violet), a 7-minute walk up Tansen Marg.</dd><dt>How long</dt><dd>About 60 minutes including questions.</dd><dt>Worth knowing</dt><dd>It's the open-air amphitheatre, not the auditorium. Galleries open beforehand.</dd></dl>
@@ -2279,6 +2411,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Usually tea and coffee only — eat before you go.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free; reading-circle events usually expect a quick RSVP on afdelhi.org.</dd><dt>Getting there</dt><dd>Khan Market (Violet), 1.5 km along Max Mueller Marg.</dd><dt>How long</dt><dd>90 minutes.</dd><dt>Worth knowing</dt><dd>In English unless the listing says otherwise. Library open beforehand.</dd></dl>
@@ -2349,6 +2482,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No free food; Habitat's restaurants and café are open on site.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Usually free — confirm on 4366 3080 / 85 / 90.</dd><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet).</dd><dt>How long</dt><dd>About 90 minutes.</dd><dt>Worth knowing</dt><dd>The Stein is inside the main complex past the atrium, not visible from Lodhi Road.</dd></dl>
@@ -2420,6 +2554,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food. Carry water — you'll be outdoors for two hours.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Included with the fair — but you need the fair's registration pass first.</dd><dt>Getting there</dt><dd>Mandi House (Blue/Violet), 15-minute walk.</dd><dt>How long</dt><dd>Two hours, 9–11 am.</dd><dt>Worth knowing</dt><dd>Outdoor session. Binoculars, notebook, water, walking shoes.</dd></dl>
@@ -2490,6 +2625,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing in the gallery; the IIC café is in the next building.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, no ticket.</dd><dt>Getting there</dt><dd>Khan Market (Violet). Kamaladevi is a separate block from IIC main.</dd><dt>How long</dt><dd>30–45 minutes.</dd><dt>Worth knowing</dt><dd>Three things stack up: panel 10:30, exhibition 11:30, poetry reading 12:30.</dd></dl>
@@ -2560,6 +2696,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Jharkhand food counters open at 8 pm after the set — Lost Flavours. Paid per plate.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, first-come. Arrive 30 minutes early — this one fills.</dd><dt>Getting there</dt><dd>Khan Market (Violet), 1.5 km.</dd><dt>How long</dt><dd>About 75 minutes, no interval.</dd><dt>Worth knowing</dt><dd>She explains each song between verses, so you don't need Bengali.</dd></dl>
@@ -2630,6 +2767,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Snacks, not a meal.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free entry. Workshops ₹250 — register on arrival, 8800020511.</dd><dt>Getting there</dt><dd>Hauz Khas (Yellow/Magenta) or Green Park.</dd><dt>How long</dt><dd>1–2 hours, or three with a workshop.</dd><dt>Worth knowing</dt><dd>2–7 pm only, Saturday and Sunday.</dd></dl>
@@ -2700,6 +2838,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food on site; the Mandi House cafés are five minutes away.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Mandi House (Blue/Violet), 5-minute walk to Rabindra Bhawan.</dd><dt>How long</dt><dd>45–60 minutes.</dd><dt>Worth knowing</dt><dd>Genuinely the last day — the show closes after 31 October.</dd></dl>
@@ -2770,6 +2909,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Pitampura (Red) or Netaji Subhash Place (Red/Pink).</dd><dt>How long</dt><dd>30–45 minutes.</dd><dt>Worth knowing</dt><dd>A working studio rather than a gallery — ring ahead if coming from far.</dd></dl>
@@ -2840,6 +2980,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Food counters inside the hall.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free visitor entry.</dd><dt>Getting there</dt><dd>HUDA City Centre (Yellow), then about 10 minutes by cab.</dd><dt>How long</dt><dd>1–2 hours.</dd><dt>Worth knowing</dt><dd>Indoor and air-conditioned — a bad-AQI fallback. Runs 31 Oct – 2 Nov.</dd></dl>
@@ -2910,6 +3051,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing included; cafés nearby.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>₹149 on BookMyShow. Performers sign up at the desk, subject to slots.</dd><dt>Getting there</dt><dd>Palam (Magenta), Gate 3 — the studio is 20 m away.</dd><dt>How long</dt><dd>2.5 hours, 5–7:30 pm.</dd><dt>Worth knowing</dt><dd>Not for children; photo ID required. Parking available.</dd></dl>
@@ -2981,6 +3123,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Chai and snack stalls open early around Connaught Place — nothing organised by the concert.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, but seat-numbered. Register on delhimarathi.org.</dd><dt>Getting there</dt><dd>Rajiv Chowk (Blue/Yellow). Central Park sits above the station.</dd><dt>How long</dt><dd>About two hours from 6 am.</dd><dt>Worth knowing</dt><dd>Dark and cold at 6 am in November — carry a jacket. Chai stalls open early.</dd></dl>
@@ -3051,6 +3194,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing during the recital; the IIC café is open.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, first-come. 230 seats — the tightest room of the festival.</dd><dt>Getting there</dt><dd>Khan Market (Violet) or Jor Bagh (Yellow).</dd><dt>How long</dt><dd>About 75 minutes.</dd><dt>Worth knowing</dt><dd>Films follow at 1 pm and 3:30 pm — you can make a day of it indoors.</dd></dl>
@@ -3121,6 +3265,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Afghan food counters open at 8 pm after the performance — The Afghan Table. Paid per plate.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, outdoors, first-come.</dd><dt>Getting there</dt><dd>Khan Market (Violet), 1.5 km.</dd><dt>How long</dt><dd>Around 60 minutes.</dd><dt>Worth knowing</dt><dd>Confirmed at 6:30 pm on the Fountain Lawns by the festival's own schedule — an earlier listing said 1 pm and was wrong. It is outdoors: sit near the front to actually see the masks.</dd></dl>
@@ -3191,6 +3336,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food; the Mandi House eateries are a short walk.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free. No ticket, no registration.</dd><dt>Getting there</dt><dd>Mandi House (Blue/Violet), 5-minute walk.</dd><dt>How long</dt><dd>45–90 minutes.</dd><dt>Worth knowing</dt><dd>Best 10:30 am–1 pm and 2:30–4:30 pm. After 5 pm the hall fills with office crowds.</dd></dl>
@@ -3261,6 +3407,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Food counters through the mela.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Khan Market (Violet) then a short auto; JLN Stadium works too.</dd><dt>How long</dt><dd>45–90 minutes.</dd><dt>Worth knowing</dt><dd>Runs to 11 pm — an after-dinner stop rather than an afternoon plan.</dd></dl>
@@ -3331,6 +3478,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food at the market — but Old Delhi is next door, so this is the one to pair with a proper meal.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, no obligation to buy.</dd><dt>Getting there</dt><dd>Delhi Gate (Violet), about a 5-minute walk.</dd><dt>How long</dt><dd>1–2 hours if you dig properly.</dd><dt>Worth knowing</dt><dd>Before noon for the best stock. Carry cash — most sellers don't take UPI.</dd></dl>
@@ -3401,6 +3549,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing included in the ticket.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>₹199 on BookMyShow.</dd><dt>Getting there</dt><dd>Saket (Yellow/Magenta), then the basement below PVR Anupam.</dd><dt>How long</dt><dd>About 2 hours from noon.</dd><dt>Worth knowing</dt><dd>Performed in Hindi.</dd></dl>
@@ -3471,6 +3620,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No free food; Habitat's restaurants and café are open on site.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free — no ticket mentioned; the desk confirms on the day.</dd><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet), then a 10-minute walk.</dd><dt>How long</dt><dd>About 90 minutes.</dd><dt>Worth knowing</dt><dd>The ghatam is a clay pot played with the palms — hearing it live is the point of the evening.</dd></dl>
@@ -3541,6 +3691,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>It is a café — coffee and snacks throughout, paid.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free — RSVP through the organiser's page.</dd><dt>Getting there</dt><dd>IFFCO Chowk (Yellow) or Sikanderpur (Yellow/Rapid Metro), then a short cab.</dd><dt>How long</dt><dd>About two hours from 1 pm.</dd><dt>Worth knowing</dt><dd>Free but capacity is small, so an RSVP actually matters here.</dd></dl>
@@ -3612,6 +3763,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>A French food evening opens at 8 pm after the recital — Une Soirée Française. Paid per plate.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, outdoors.</dd><dt>Getting there</dt><dd>Khan Market (Violet).</dd><dt>How long</dt><dd>About 75 minutes.</dd><dt>Worth knowing</dt><dd>The quietest, slowest concert of the week — arriving late is most disruptive here.</dd></dl>
@@ -3682,6 +3834,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>A food counter inside the hall.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Normally free — the listing doesn't confirm, so check with the organiser.</dd><dt>Getting there</dt><dd>Pitampura (Red) or Kohat Enclave (Red).</dd><dt>How long</dt><dd>About 45 minutes.</dd><dt>Worth knowing</dt><dd>One hall, mostly fashion and jewellery. Not worth a long trip on its own.</dd></dl>
@@ -3753,6 +3906,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Konkan–Malabar food counters at 8 pm — the festival's last food night. Paid per plate.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, outdoors. Biggest crowd of the festival.</dd><dt>Getting there</dt><dd>Khan Market (Violet).</dd><dt>How long</dt><dd>Around 90 minutes.</dd><dt>Worth knowing</dt><dd>Arrive 45 minutes early or plan to stand. Earlier: <em>Jaane Bhi Do Yaaro</em> at 2 pm.</dd></dl>
@@ -3823,6 +3977,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food at the Goethe-Institut — eat before.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, no registration.</dd><dt>Getting there</dt><dd>Barakhamba Road (Blue) or Rajiv Chowk, both a short walk.</dd><dt>How long</dt><dd>About 2 hours with the discussion.</dd><dt>Worth knowing</dt><dd>German with English subtitles, then a discussion with Vani Subramanian.</dd></dl>
@@ -3893,6 +4048,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food on site.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, no registration.</dd><dt>Getting there</dt><dd>Mandi House (Blue/Violet), 5-minute walk.</dd><dt>How long</dt><dd>45–60 minutes.</dd><dt>Worth knowing</dt><dd>Best light for judging weave and colour is before noon.</dd></dl>
@@ -3964,6 +4120,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing laid on; Habitat's restaurants are open.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet).</dd><dt>How long</dt><dd>About 90 minutes, two performers.</dd><dt>Worth knowing</dt><dd>“The Theatre” is the black-box studio, not the Stein — different entrance.</dd></dl>
@@ -4034,6 +4191,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food — but you're in Khan Market, which is the food.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Khan Market (Violet), the gallery is in the middle lane.</dd><dt>How long</dt><dd>20–30 minutes.</dd><dt>Worth knowing</dt><dd>Runs to 10 November — pair it with lunch in the market.</dd></dl>
@@ -4105,6 +4263,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Street vendors around India Gate, nothing organised — expect crowds at the good ones.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free and unticketed.</dd><dt>Getting there</dt><dd>Central Secretariat (Yellow/Violet), then walk to the path.</dd><dt>How long</dt><dd>1–2 hours on foot.</dd><dt>Worth knowing</dt><dd>The lawns aren't a picnic licence — follow NDMC's notices. Metro sometimes ends earlier on Diwali night.</dd></dl>
@@ -4176,6 +4335,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>The thekua and fruit you'll see are offerings, not for visitors. Street food stalls near the bigger ghats.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free; the ghats are public.</dd><dt>Getting there</dt><dd>Yamuna Bank (Blue) and Kalindi Kunj (Magenta) are the nearest big clusters.</dd><dt>How long</dt><dd>About 2 hours at sunset on the 15th — that's the evening to go.</dd><dt>Worth knowing</dt><dd>Go as a guest. Keep clear of the water's edge; don't photograph people mid-ritual.</dd></dl>
@@ -4247,6 +4407,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food in the galleries; the mall it sits in has cafés.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, always.</dd><dt>Getting there</dt><dd>Saket (Yellow/Magenta) — the museum is inside DLF South Court Mall.</dd><dt>How long</dt><dd>1.5–2 hours for all three shows.</dd><dt>Worth knowing</dt><dd>Also running: <em>Inheritors of Earth</em> and <em>Pata Dekhabo?</em> to 22 November.</dd></dl>
@@ -4318,6 +4479,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Nothing included — sometimes tea at the back.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>₹99 on District. Unreserved seating, so arrive early.</dd><dt>Getting there</dt><dd>Jangpura or JLN Stadium (Violet), then a short auto.</dd><dt>How long</dt><dd>2–3 hours.</dd><dt>Worth knowing</dt><dd>Mostly Urdu and Hindi. A second mushaira, <em>Yaarana</em>, runs the same evening elsewhere.</dd></dl>
@@ -4389,6 +4551,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food; the Habitat café opens at 10 am.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet).</dd><dt>How long</dt><dd>About 90 minutes.</dd><dt>Worth knowing</dt><dd>Outdoors at 10:30 am — hat, sunglasses, water. Usually half-empty at that hour.</dd></dl>
@@ -4460,6 +4623,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Langar — free food, cooked and served to everyone who comes, all day. Take it when offered.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free. Langar is free and offered to everyone.</dd><dt>Getting there</dt><dd>Chandni Chowk (Yellow) for Sis Ganj; Patel Chowk for Bangla Sahib.</dd><dt>How long</dt><dd>1–2 hours, longer if you walk with the procession.</dd><dt>Worth knowing</dt><dd>Cover your head — scarves at the gate. Shoes off at the joda ghar.</dd></dl>
@@ -4531,6 +4695,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Tea and coffee at the venue.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Khan Market (Violet) or Jor Bagh (Yellow).</dd><dt>How long</dt><dd>About 2 hours.</dd><dt>Worth knowing</dt><dd>Organised by Primus Partners; register through them if the listing asks.</dd></dl>
@@ -4602,6 +4767,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No free food; the Habitat café is open.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free — confirm at the Programmes Desk (4366 3080).</dd><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet).</dd><dt>How long</dt><dd>About 90 minutes.</dd><dt>Worth knowing</dt><dd>Wheelchair access is through the main Habitat entrance; the auditorium has step-free seating.</dd></dl>
@@ -4673,6 +4839,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food; the Alliance café is open.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free.</dd><dt>Getting there</dt><dd>Khan Market (Violet), 1.5 km along Max Mueller Marg.</dd><dt>How long</dt><dd>1–2 hours.</dd><dt>Worth knowing</dt><dd>The 27–28 November dates for Delhi are still provisional — confirm on the site.</dd></dl>
@@ -4744,6 +4911,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>Food stalls across the ground, paid. Expect queues in the evening.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free, but you must register for a QR pass — no pass, no entry. Children under 13 come in with a parent.</dd><dt>Getting there</dt><dd>Supreme Court (Blue) or Central Secretariat (Yellow/Violet), then a 10-minute walk.</dd><dt>How long</dt><dd>11 am to 9 pm daily, three days. Most people do one long evening.</dd><dt>Worth knowing</dt><dd>A free pass gets you onto the ground, not into a seat. For the headliners, be at the stage 30–40 minutes early. Mornings are calm; 4:30 pm onwards is a crush.</dd></dl>
@@ -4815,6 +4983,7 @@ h1,.stair .l1,.stair .l2{
         <h4>Food</h4>
         <p>No food laid on for this session.</p>
       </div>
+      
       <div class="dgroup">
         <h4>Practical</h4>
         <dl><dt>Entry</dt><dd>Free — register as a delegate on the Purple Fest site.</dd><dt>Getting there</dt><dd>Lok Kalyan Marg (Yellow) or Central Secretariat, then a short auto.</dd><dt>How long</dt><dd>Two hours, 3:30 to 5:30 pm.</dd><dt>Worth knowing</dt><dd>It's part of a larger festival — check the rest of the Purple Fest programme for the same day.</dd></dl>
@@ -4906,6 +5075,22 @@ h1,.stair .l1,.stair .l2{
   <h2 id="venues">Venues</h2>
   <p class="note">Every place with something on in this window. Tap a venue to see only its events.</p>
   <div class="venuegrid"><button class="vbtn" data-venue="India International Centre">India International Centre<span class="vcount">9</span></button><button class="vbtn" data-venue="India Habitat Centre">India Habitat Centre<span class="vcount">6</span></button><button class="vbtn" data-venue="Aga Khan Hall">Aga Khan Hall<span class="vcount">2</span></button><button class="vbtn" data-venue="Alliance Française de Delhi">Alliance Française de Delhi<span class="vcount">2</span></button><button class="vbtn" data-venue="Travancore Palace">Travancore Palace<span class="vcount">2</span></button><button class="vbtn" data-venue="Agarwal Bhawan">Agarwal Bhawan<span class="vcount">1</span></button><button class="vbtn" data-venue="Aiwan-e-Ghalib">Aiwan-e-Ghalib<span class="vcount">1</span></button><button class="vbtn" data-venue="Apparel House, Gurugram">Apparel House, Gurugram<span class="vcount">1</span></button><button class="vbtn" data-venue="Artography Studio, Pitampura">Artography Studio, Pitampura<span class="vcount">1</span></button><button class="vbtn" data-venue="Bikaner House">Bikaner House<span class="vcount">1</span></button><button class="vbtn" data-venue="Blind Relief Association">Blind Relief Association<span class="vcount">1</span></button><button class="vbtn" data-venue="Central Park, Connaught Place">Central Park, Connaught Place<span class="vcount">1</span></button><button class="vbtn" data-venue="Cure India, Gulmohar Park">Cure India, Gulmohar Park<span class="vcount">1</span></button><button class="vbtn" data-venue="Durga Bari Mandir, GK-1">Durga Bari Mandir, GK-1<span class="vcount">1</span></button><button class="vbtn" data-venue="Gallery Exhibit 320">Gallery Exhibit 320<span class="vcount">1</span></button><button class="vbtn" data-venue="Gurdwara Sis Ganj Sahib">Gurdwara Sis Ganj Sahib<span class="vcount">1</span></button><button class="vbtn" data-venue="Hazrat Nizamuddin Dargah">Hazrat Nizamuddin Dargah<span class="vcount">1</span></button><button class="vbtn" data-venue="Hideout Studio, Saket">Hideout Studio, Saket<span class="vcount">1</span></button><button class="vbtn" data-venue="IGNCA, Janpath">IGNCA, Janpath<span class="vcount">1</span></button><button class="vbtn" data-venue="Kartavya Path">Kartavya Path<span class="vcount">1</span></button><button class="vbtn" data-venue="Kiran Nadar Museum of Art">Kiran Nadar Museum of Art<span class="vcount">1</span></button><button class="vbtn" data-venue="Lalit Kala Akademi">Lalit Kala Akademi<span class="vcount">1</span></button><button class="vbtn" data-venue="Lodhi Garden">Lodhi Garden<span class="vcount">1</span></button><button class="vbtn" data-venue="Mahila Haat, Daryaganj">Mahila Haat, Daryaganj<span class="vcount">1</span></button><button class="vbtn" data-venue="Major Dhyan Chand National Stadium">Major Dhyan Chand National Stadium<span class="vcount">1</span></button><button class="vbtn" data-venue="Nature Morte">Nature Morte<span class="vcount">1</span></button><button class="vbtn" data-venue="Ojas Art, Mehrauli">Ojas Art, Mehrauli<span class="vcount">1</span></button><button class="vbtn" data-venue="Poetistic Studio, Gurugram">Poetistic Studio, Gurugram<span class="vcount">1</span></button><button class="vbtn" data-venue="Siddhartha Hall">Siddhartha Hall<span class="vcount">1</span></button><button class="vbtn" data-venue="Sunder Nagar Park">Sunder Nagar Park<span class="vcount">1</span></button><button class="vbtn" data-venue="Triveni Kala Sangam">Triveni Kala Sangam<span class="vcount">1</span></button><button class="vbtn" data-venue="Unmukt Studio, Palam">Unmukt Studio, Palam<span class="vcount">1</span></button><button class="vbtn" data-venue="Vadehra Art Gallery">Vadehra Art Gallery<span class="vcount">1</span></button><button class="vbtn" data-venue="Vishwa Yuvak Kendra">Vishwa Yuvak Kendra<span class="vcount">1</span></button><button class="vbtn" data-venue="Yamuna ghats">Yamuna ghats<span class="vcount">1</span></button></div>
+
+  <div class="venuepage" id="venuepage" role="dialog" aria-modal="true" aria-label="Venue" hidden>
+    <div class="vpbox">
+      <div class="vphead">
+        <div>
+          <h3 class="vptitle" id="vptitle"></h3>
+          <p class="vpmeta" id="vpmeta"></p>
+        </div>
+        <div class="vpactions">
+          <button type="button" class="vpback" id="vpback" aria-label="Back to all venues" hidden>← Venues</button>
+          <button type="button" class="vpclose" id="vpclose" aria-label="Close">Close ✕</button>
+        </div>
+      </div>
+      <div class="vpbody" id="vpbody"></div>
+    </div>
+  </div>
   <h2 id="venueaddr">Venues, with addresses</h2>
   <div class="tabwrap">
     <table>
@@ -4996,6 +5181,46 @@ h1,.stair .l1,.stair .l2{
   var PINS = {"110090":[28.6923,77.3042],"110036":[28.7978,77.13],"110039":[28.7997,77.0381],"110081":[28.7349,77.0056],"110040":[28.84,77.08],"110035":[28.6738,77.1446],"110086":[28.69,77.0686],"110076":[28.5348,77.2912],"110074":[28.5084,77.2092],"110037":[28.5556,77.0846],"110030":[28.5174,77.2055],"110043":[28.6222,77.0118],"110045":[28.5972,77.0908],"110073":[28.5545,76.865],"110041":[28.6796,77.0661],"110018":[28.6499,77.1307],"110059":[28.6354,77.044],"110053":[28.38,77.12],"110095":[28.6721,77.307],"110094":[28.6923,77.3042],"110032":[28.6668,77.2946],"110091":[28.6139,77.2936],"110092":[28.627,77.2063],"110096":[28.6086,77.3364],"110054":[28.7033,77.2229],"110007":[28.6675,77.1917],"110084":[28.7572,77.1978],"110009":[28.7153,77.2044],"110033":[28.7127,77.1733],"110083":[28.6905,77.0823],"110042":[28.7464,77.1185],"110034":[28.6973,77.1269],"110110":[28.7157,77.11],"110002":[28.6339,77.2462],"110001":[28.6268,77.2066],"110003":[28.6092,77.2359],"110055":[28.6461,77.2094],"110005":[28.65,77.1938],"110008":[28.6476,77.1695],"110062":[28.5155,77.2375],"110025":[28.5672,77.2788],"110080":[28.5105,77.2424],"110024":[28.5741,77.2423],"110065":[28.5647,77.2556],"110014":[28.5839,77.2432],"110017":[28.523,77.2145],"110049":[28.5579,77.2132],"110124":[28.5679,77.2414],"110021":[28.583,77.1615],"110023":[28.5713,77.2052],"110067":[28.5394,77.1635],"110022":[28.5706,77.1755],"110029":[28.5649,77.2068],"110016":[28.5429,77.196],"110070":[28.52,77.15],"110028":[28.6321,77.1389],"110046":[28.6111,77.1088],"110075":[28.6069,77.0415],"110064":[28.6249,77.1109],"110015":[28.6592,77.1315],"110063":[28.6667,77.1191],"110027":[28.6467,77.1125],"110006":[28.6565,77.2247],"110020":[28.5433,77.2578],"110047":[28.4789,77.1201],"110010":[28.48,77.13],"110031":[28.6593,77.2742],"110051":[28.6457,77.2998],"110151":[28.6457,77.2998],"110052":[28.6934,77.1714],"110085":[28.6934,77.1714],"110099":[28.7206,77.0809],"110061":[28.54,77.05],"110066":[28.5671,77.1852],"110057":[28.568,77.1594],"110078":[28.633,77.1366],"110077":[28.5879,77.0723],"110026":[28.6732,77.132],"110019":[28.5498,77.3211],"110093":[28.6953,77.2953],"110088":[28.6934,77.1714],"110044":[28.51,77.33],"110038":[28.5181,77.1016],"110087":[28.6664,77.0882],"110195":[28.674,77.3197],"110011":[28.6111,77.2127],"110004":[28.6211,77.1961],"110102":[28.6314,77.2057],"110012":[28.6369,77.1696],"110048":[28.5405,77.2347],"110013":[28.5877,77.2506],"110068":[28.5012,77.2003],"110097":[28.5289,77.0866],"110058":[28.6221,77.0791],"110082":[28.7722,77.119],"110069":[28.6226,77.2127],"110119":[28.5428,77.2575],"110106":[28.6623,77.2356],"110089":[28.7348,77.1325],"110056":[28.6827,77.1111],"110060":[28.6367,77.1831],"121003":[28.4637,77.3339],"121004":[24.9597,75.5932],"121101":[28.3799,77.4358],"122101":[28.3914,77.0512],"122102":[28.3522,77.0647],"122413":[29.3876,77.4464],"122506":[28.4468,76.8257],"122504":[28.467,77.0812],"122502":[28.293,76.6973],"122414":[28.2717,76.7409],"122004":[28.4139,76.9932],"122503":[28.3257,76.7778],"122006":[28.4856,77.0091],"122103":[28.2485,77.0658],"201009":[28.6178,77.4774],"201015":[28.6767,77.5008],"201010":[28.6413,77.3187],"201002":[28.7365,77.3525],"201102":[28.7886,77.3425],"201003":[28.7279,77.4049],"201206":[28.7671,77.5404],"245304":[28.733,77.5748],"201201":[28.8552,77.6708],"201204":[28.8896,77.4716],"203207":[28.5977,77.4999],"201314":[28.5355,77.391],"201306":[28.5318,77.4342],"201304":[28.5231,77.3856],"201008":[28.5463,77.3884],"203201":[28.3048,77.5992],"203202":[28.3908,77.6605],"203141":[28.2233,77.7223],"203203":[28.3574,77.778],"203209":[28.2219,77.5857],"203155":[28.1383,77.6063],"121006":[28.3721,77.3321],"121010":[28.5821,77.979],"121009":[28.4881,77.2946],"121014":[28.4726,77.4848],"122008":[28.462,77.0316],"122001":[28.4596,77.0673],"122016":[28.4966,77.0853],"122018":[0,0],"201001":[28.6845,77.5247],"201006":[28.7006,77.3289],"201303":[26.5124,77.8595],"201315":[28.4461,77.5098],"203135":[28.2486,77.8547],"121001":[28.3918,77.3021],"122003":[28.4465,77.0736],"201005":[28.6933,77.3576],"201103":[28.8027,77.2348],"201312":[28.4522,77.5252],"121007":[28.3954,77.3153],"121005":[28.3918,77.3021],"121008":[28.3918,77.3021],"121015":[28.3453,77.2965],"122005":[28.5056,77.0711],"122505":[28.4385,76.9354],"122052":[28.342,76.9365],"122007":[28.462,77.0316],"122051":[28.342,76.9365],"122012":[28.4139,76.9932],"201301":[28.5792,77.3242],"201004":[28.6921,77.4503],"201007":[28.6784,77.3747],"201014":[28.6391,77.3715],"201019":[28.6681,77.4285],"201313":[28.5472,77.3344],"201316":[28.5957,77.4023],"201311":[28.5767,77.3272],"201310":[28.5015,77.5232],"201305":[28.5392,77.4064],"201309":[28.6248,77.403],"201013":[28.6855,77.4842],"201018":[28.6527,77.4356],"201017":[28.6892,77.4452],"201016":[28.6257,77.4351],"201318":[28.6681,77.4285],"121002":[28.7081,77.2719],"121012":[28.3918,77.3021],"122015":[28.4974,77.0631],"122017":[28.462,77.0316],"201307":[28.5849,77.387],"212652":[25.927,81.1518],"122009":[28.3409,76.7562],"201011":[28.6649,77.3303],"201020":[28.6196,77.3462],"201302":[28.5787,77.3134],"201317":[28.5229,77.3548],"121013":[28.3918,77.3021],"121102":[28.2008,77.2652],"122010":[28.4661,77.1058],"122002":[28.4661,77.1058],"122011":[28.462,77.0316],"122098":[28.3914,77.0512],"201012":[28.6533,77.3567],"201021":[28.6341,77.3454]};
 /* Delhi, free — interactive layer */
 (function () {
+
+  /* Hindi interface strings. Content stays English until a real translation pass. */
+  var HI = {
+    "Browse venues":"वेन्यू ब्राउज़ करें",
+    "Surprise me":"मुझे सरप्राइज़ करें",
+    "Open all programmes":"सभी प्रोग्राम खोलें",
+    "Clear filters":"फ़िल्टर साफ़ करें",
+    "Search an area or pincode":"किसी इलाके या पिनकोड को खोजें",
+    "All":"सभी","Free":"मुफ़्त","Cheap":"सस्ता",
+    "Today":"आज","Tomorrow":"कल","This weekend":"इस वीकेंड","This week":"इस हफ़्ते",
+    "What it's about":"यह किस बारे में है",
+    "What happens":"क्या होगा",
+    "Run of show":"शो का क्रम",
+    "Food":"खाने-पीने की चीज़ें",
+    "Getting in":"कैसे पहुँचें",
+    "Practical":"ज़रूरी जानकारी",
+    "Entry":"प्रवेश",
+    "Getting there":"वहां पहुंचना",
+    "How long":"कितना समय लगेगा",
+    "Worth knowing":"जानना ज़रूरी है",
+    "Full programme":"पूरा प्रोग्राम",
+    "Venues":"वेन्यू",
+    "Where to look":"कहाँ देखें",
+    "Ticketed":"टिकट वाले",
+    "What this is":"यह क्या है",
+    "How the distances work":"दूरी कैसे काम करती है",
+    "Indoors":"इनडोर","Outdoors":"आउटडोर",
+    "Seated":"बैठकर","On your feet":"खड़े होकर",
+    "Free entry":"मुफ़्त एंट्री",
+    "Step-free access":"बिना सीढ़ियों की पहुँच",
+    "Not recorded — call the venue before you travel":"रिकॉर्ड नहीं है — पहुँचने से पहले वेन्यू पर कॉल करें",
+    "Closing soon":"जल्द बंद हो रहा है",
+    "Until":"तक",
+    "No food":"खाने की अनुमति नहीं",
+    "Show indoor events":"इनडोर इवेंट दिखाएं",
+    "Report a change":"बदलाव की रिपोर्ट करें",
+    "Checked":"चेक किया गया"
+  };
+  
+
   var q = document.getElementById('q');
   var list = document.getElementById('list');
   var countEl = document.getElementById('count');
@@ -5738,18 +5963,7 @@ h1,.stair .l1,.stair .l2{
 
   /* venue filter */
   document.querySelectorAll('.vbtn').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var same = venue === b.dataset.venue;
-      venue = same ? 'all' : b.dataset.venue;
-      document.querySelectorAll('.vbtn').forEach(function (x) {
-        x.setAttribute('aria-pressed', String(!same && x === b));
-      });
-      run();
-      if (!same) {
-        var l = document.getElementById('list');
-        if (l) window.scrollTo({ top: l.offsetTop - 140, behavior: 'smooth' });
-      }
-    });
+    b.addEventListener('click', function () { openVenue(b.dataset.venue); });
   });
   if (panelPeek) panelPeek.addEventListener('click', function () { setPanelHidden(false); });
   /* the panel only returns on a vigorous upward gesture:
@@ -6028,6 +6242,171 @@ h1,.stair .l1,.stair .l2{
     });
   })();
 
+
+  /* ---------------- venue page ----------------
+     Clicking a venue in the index opens that venue's own page: address,
+     metro, and every event it is hosting, rather than filtering the list. */
+  var vp = document.getElementById('venuepage');
+  var vpTitle = document.getElementById('vptitle');
+  var vpMeta = document.getElementById('vpmeta');
+  var vpBody = document.getElementById('vpbody');
+
+  var vpOpener = null;
+
+  function openVenue(name, fromList) {
+    if (!vp) return;
+    if (!vp.hidden && vpBody.querySelector('.vpvenlist')) fromList = true;
+    vpOpener = document.activeElement;
+    var mine = [];
+    rows.forEach(function (r) { if (r.dataset.venue === name) mine.push(r); });
+    if (!mine.length) return;
+
+    vpTitle.textContent = name;
+    var first = mine[0];
+    var addr = first.dataset.loc || '';
+    var metro = first.querySelector('.metaline .metro');
+    var meta = addr;
+    if (metro) meta += ' · ' + metro.textContent;
+    vpMeta.textContent = meta;
+
+    vpBody.innerHTML = mine.map(function (r) {
+      var t = r.querySelector('.title a');
+      var g = r.querySelector('.gist');
+      return '<div class="vpevent">' +
+        '<div class="vpwhen">' + (r.dataset.when || '') + '</div>' +
+        '<div><p class="vpname">' + (t ? t.textContent : r.dataset.title) + '</p>' +
+        '<p class="vpgist">' + (g ? g.textContent : '') + '</p></div>' +
+        '<button class="vpopen" data-open="' + r.dataset.i + '">Open the full card →</button>' +
+        '</div>';
+    }).join('');
+
+    var head = document.querySelector('.vphead .vpmeta');
+    var backBtn = document.getElementById('vpback');
+    if (backBtn) backBtn.hidden = !fromList;
+
+    vp.hidden = false;
+    document.body.style.overflow = 'hidden';
+    vpBody.scrollTop = 0;
+    var box = vp.querySelector('.vpbox');
+    if (box) { box.setAttribute('tabindex', '-1'); box.focus({ preventScroll: true }); }
+    vpBody.querySelectorAll('.vpopen').forEach(function (b) {
+      b.addEventListener('click', function () {
+        closeVenue();
+        openEvent(b.dataset.open);
+      });
+    });
+  }
+
+  function closeVenue() {
+    if (!vp) return;
+    vp.hidden = true;
+    document.body.style.overflow = '';
+    if (vpOpener && vpOpener.focus) { try { vpOpener.focus({ preventScroll: true }); } catch (e) {} }
+    vpOpener = null;
+  }
+
+  if (vp) {
+    document.getElementById('vpclose').addEventListener('click', closeVenue);
+    var vpBack = document.getElementById('vpback');
+    if (vpBack) vpBack.addEventListener('click', function () {
+      vp.hidden = true;
+      document.getElementById('venueBtn').click();
+    });
+    vp.addEventListener('click', function (e) { if (e.target === vp) closeVenue(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !vp.hidden) closeVenue();
+    });
+  }
+
+
+  /* ---------------- venue browser (top bar) ---------------- */
+  var venueBtn = document.getElementById('venueBtn');
+  if (venueBtn) {
+    venueBtn.addEventListener('click', function () {
+      var counts = {};
+      rows.forEach(function (r) {
+        var v = r.dataset.venue;
+        if (v) counts[v] = (counts[v] || 0) + 1;
+      });
+      var names = Object.keys(counts).sort(function (x, y) {
+        return counts[y] - counts[x] || x.localeCompare(y);
+      });
+      vpTitle.textContent = 'Venues';
+      vpMeta.textContent = names.length + ' places with something on in this window';
+      vpBody.innerHTML = '<div class="vpvenlist">' + names.map(function (n) {
+        return '<button class="vpven" data-venue="' + n + '">' + n +
+               '<span class="vcount">' + counts[n] + '</span></button>';
+      }).join('') + '</div>';
+      vp.hidden = false;
+      document.body.style.overflow = 'hidden';
+      vpBody.querySelectorAll('.vpven').forEach(function (b) {
+        b.addEventListener('click', function () { openVenue(b.dataset.venue); });
+      });
+    });
+  }
+
+
+  /* ---------------- language toggle ----------------
+     Swaps the interface chrome only. The event writing stays in English until
+     every gist, run-of-show line and venue note is translated properly — a
+     half-translated page reads worse than an untranslated one. */
+  (function language() {
+    var LKEY = 'dfe-lang';
+    var btn = document.getElementById('langBtn');
+    if (!btn) return;
+    var on = false;
+    try { on = localStorage.getItem(LKEY) === 'hi'; } catch (e) {}
+
+    var EN = {};
+    function scopes() {
+      return document.querySelectorAll('.mast, .controls, .sectionnav, #list, footer');
+    }
+
+    function collect() {
+      scopes().forEach(function (scope) {
+        var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, null);
+        var n;
+        while ((n = walker.nextNode())) {
+          var t = n.nodeValue.trim();
+          if (t && HI[t] && !EN[t]) EN[t] = t;
+        }
+      });
+    }
+
+    function apply(state) {
+      var todo = [];
+      scopes().forEach(function (scope) {
+        var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, null);
+        var n;
+        while ((n = walker.nextNode())) {
+          var t = n.nodeValue, trimmed = t.trim();
+          if (!trimmed) continue;
+          if (state && HI[trimmed]) todo.push([n, t.replace(trimmed, HI[trimmed])]);
+          else if (!state) {
+            for (var k in HI) if (HI[k] === trimmed) { todo.push([n, t.replace(trimmed, k)]); break; }
+          }
+        }
+      });
+      todo.forEach(function (pair) { pair[0].nodeValue = pair[1]; });
+      var ph = q.getAttribute('placeholder');
+      if (state && ph && HI[ph]) q.setAttribute('placeholder', HI[ph]);
+      if (!state) {
+        for (var k in HI) if (HI[k] === q.getAttribute('placeholder')) { q.setAttribute('placeholder', k); break; }
+      }
+      btn.setAttribute('aria-pressed', String(state));
+      btn.querySelector('span').textContent = state ? 'English' : 'हिंदी';
+      document.documentElement.setAttribute('lang', state ? 'hi' : 'en');
+    }
+
+    collect();
+    if (on) apply(true);
+    btn.addEventListener('click', function () {
+      on = !on;
+      apply(on);
+      try { localStorage.setItem(LKEY, on ? 'hi' : 'en'); } catch (e) {}
+    });
+  })();
+
   /* ---------------- theme ---------------- */
   var THEME_KEY = 'dfe-theme';
   function applyTheme(t) {
@@ -6289,7 +6668,6 @@ h1,.stair .l1,.stair .l2{
   }
 
 })();
-
 
 </script>
   <button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
