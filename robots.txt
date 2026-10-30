@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iambesttttduhh.github.io/delhi-free/sitemap.xml
