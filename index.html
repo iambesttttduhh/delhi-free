@@ -12,6 +12,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Delhi, Free">
 <meta name="robots" content="index, follow, max-image-preview:large">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline'; connect-src https://air-quality-api.open-meteo.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+
 <meta property="og:title" content="Delhi, Free — every free evening in Delhi, ranked by distance">
 <meta property="og:description" content="51 events across 676 Delhi-NCR neighbourhoods, 29 Oct – 30 Nov 2026. Search your area or pincode and the list reorders nearest first.">
 <meta name="twitter:card" content="summary_large_image">
@@ -25,9 +27,14 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
 }
 </script>
 <title>Delhi, free — nearest to you first</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jetbrainsmono-400.woff2) format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/jetbrainsmono-500.woff2) format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/jetbrainsmono-700.woff2) format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/spacegrotesk-400.woff2) format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/spacegrotesk-500.woff2) format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/spacegrotesk-700.woff2) format('woff2');}</style>
 <style>/* ==========================================================================
    DELHI, FREE — bold editorial system
    Poster type · hard edges · acid accent · art-directed photography
@@ -5017,7 +5024,17 @@ h1,.stair .l1,.stair .l2{
 
   function labelFor(key) {
     if (DISPLAY[key]) return DISPLAY[key];
-    return key.replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
+    /* the postal dataset carries post-office suffixes — "saket so south",
+       "tilak nagar s.o. (west)" — which read badly in a suggestion chip */
+    var clean = key
+      .replace(/\s*\([^)]*\)\s*/g, ' ')
+      .replace(/\s+s\.?o\.?(\s+(north|south|east|west|central|new delhi))?\s*$/i, '')
+      .replace(/\s+ndc\s*$/i, '')
+      .replace(/\s+po\s*$/i, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!clean) clean = key;
+    return clean.replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
   }
 
   function asPlace(key) {
@@ -5062,12 +5079,39 @@ h1,.stair .l1,.stair .l2{
     return null;
   }
 
+  function editDistance(a, b) {
+    if (Math.abs(a.length - b.length) > 3) return 99;
+    var prev = [], cur = [], i, j;
+    for (j = 0; j <= b.length; j++) prev[j] = j;
+    for (i = 1; i <= a.length; i++) {
+      cur[0] = i;
+      for (j = 1; j <= b.length; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
+                          prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      }
+      prev = cur.slice();
+    }
+    return prev[b.length];
+  }
+
   function suggestions(raw) {
     var n = normTerm(raw), sq = squash(n);
     if (!sq) return [];
     var head = sq.slice(0, Math.min(4, sq.length)), out = [];
     for (var i = 0; i < INDEX.length && out.length < 4; i++) {
       if (INDEX[i][0].indexOf(head) === 0 && out.indexOf(INDEX[i][1]) === -1) out.push(INDEX[i][1]);
+    }
+    /* nothing starts with what was typed — offer the nearest spellings */
+    if (!out.length && sq.length >= 3) {
+      var scored = [];
+      for (var k = 0; k < INDEX.length; k++) {
+        var d = editDistance(sq, INDEX[k][0]);
+        if (d <= 2) scored.push([d, INDEX[k][1]]);
+      }
+      scored.sort(function (x, y) { return x[0] - y[0]; });
+      for (var s = 0; s < scored.length && out.length < 4; s++) {
+        if (out.indexOf(scored[s][1]) === -1) out.push(scored[s][1]);
+      }
     }
     return out;
   }
@@ -5295,11 +5339,6 @@ h1,.stair .l1,.stair .l2{
     list.classList.remove('bydist');
     originalNodes.forEach(function (n) { list.appendChild(n); });
     rows.forEach(function (r) { r.querySelector('.dist').textContent = ''; });
-  }
-
-  function activePlace() {
-    if (geoPlace) return geoPlace;
-    return findPlace(q.value);
   }
 
   function run() {
