@@ -1180,6 +1180,17 @@ h1,.stair .l1,.stair .l2{
   background:transparent;color:var(--ink);cursor:pointer;
 }
 .venuebar button:hover{background:var(--ink);color:var(--paper)}
+
+/* Browse venues sits in the same row as Surprise me and Hide — it had no
+   rule of its own and was falling back to the browser's default button. */
+#venueBtn{
+  font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  padding:6px 10px;border:1.5px solid var(--line);border-radius:0;background:transparent;
+  color:var(--ink);cursor:pointer;white-space:nowrap;
+  transition:background var(--t-fast) var(--ease),color var(--t-fast) var(--ease);
+}
+#venueBtn:hover{background:var(--ink);color:var(--paper)}
+#venueBtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
 </head>
 <body>
