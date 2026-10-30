@@ -1,0 +1,48 @@
+name: Site switch (pause / resume)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "pause takes the site offline, resume puts it back"
+        required: true
+        default: pause
+        type: choice
+        options:
+          - pause
+          - resume
+          - status
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTION: ${{ inputs.action }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -e
+          case "$ACTION" in
+            pause)
+              gh api -X DELETE "repos/$REPO/pages" && echo "PAUSED — the address now returns 404. Nothing was deleted." \
+                || echo "Nothing to pause (site was not published)."
+              ;;
+            resume)
+              gh api -X POST "repos/$REPO/pages" \
+                -f build_type=legacy \
+                -f 'source[branch]=main' \
+                -f 'source[path]=/' \
+                && echo "RESUMED — live again in a minute or two." \
+                || echo "Could not resume; check Settings > Pages."
+              ;;
+            status)
+              gh api "repos/$REPO/pages" --jq '{url: .html_url, status: .status, branch: .source.branch}' \
+                || echo "NOT PUBLISHED — the site is currently paused or off."
+              ;;
+          esac
