@@ -843,7 +843,6 @@ body.panel-hidden #panelPeek{
   .aqibar button{width:100%;margin-left:0}
 }
 
-
 /* ==========================================================================
    Awwwards-style moves, four of them, kept disciplined:
    1. staircase title      (Tengile MalaMala, SOTD 3 Oct 2026)
@@ -1134,85 +1133,23 @@ h1,.stair .l1,.stair .l2{
 .closedbanner a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
 .stalecheck{color:var(--amber) !important}
 
-/* ---------------- venue page ---------------- */
 /* The scrim is the page's own ink, not pure black, and it goes denser in dark
    mode — a black scrim over a dark page is invisible. 0.5 is the common default. */
-.venuepage{
-  position:fixed;inset:0;z-index:85;display:grid;place-items:center;
-  background:color-mix(in srgb, var(--ink) 50%, transparent);
-  backdrop-filter:blur(4px);
-  padding:16px;
-  animation:vpfade .15s var(--ease);
-}
-.venuepage[hidden]{display:none}
-[data-theme="dark"] .venuepage{
-  background:color-mix(in srgb, var(--ink) 74%, transparent);
-}
+
+[data-theme="dark"] 
 @keyframes vpfade{from{opacity:0}to{opacity:1}}
 @keyframes vprise{from{opacity:0;transform:translateY(4px) scale(.98)}
                   to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){
-  .venuepage,.vpbox{animation:none !important}
+  
 }
 
-.vpbox{
-  background:var(--surface);
-  border:1.5px solid var(--line);
-  width:min(760px,100%);
-  max-height:min(86vh,860px);
-  display:flex;flex-direction:column;
-  box-shadow:10px 10px 0 var(--ink);
-  animation:vprise .15s var(--ease);
-  outline:none;
-}
-[data-theme="dark"] .vpbox{
-  border-width:1px;
-  border-color:color-mix(in srgb, var(--paper) 22%, transparent);
-  box-shadow:10px 10px 0 color-mix(in srgb, var(--paper) 14%, transparent);
-}
-.vphead{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:18px 20px 14px;border-bottom:1.5px solid var(--line);
-}
-.vptitle{
-  margin:0;font-family:var(--font-display);text-transform:uppercase;
-  font-size:clamp(22px,3.6vw,34px);line-height:1;letter-spacing:0.012em;
-}
-.vpmeta{
-  margin:8px 0 0;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--muted);
-}
-.vpclose{
-  margin-left:auto;flex:0 0 auto;
-  font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
-  padding:7px 11px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;
-}
-.vpclose:hover{background:var(--ink);color:var(--paper)}
-.vpbody{overflow:auto;padding:6px 20px 20px}
-.vpevent{
-  display:grid;grid-template-columns:96px 1fr;gap:4px 16px;
-  padding:14px 0;border-bottom:1px solid var(--line-soft);
-}
-.vpevent:last-child{border-bottom:0}
-.vpwhen{
-  font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--accent);font-weight:700;padding-top:3px;
-}
-.vpname{
-  font-family:var(--font-display);text-transform:uppercase;font-size:17px;line-height:1.05;
-  letter-spacing:0.012em;margin:0;
-}
-.vpgist{margin:5px 0 0;font-size:13px;line-height:1.45;color:var(--muted)}
-.vpopen{
-  grid-column:2;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--accent);background:none;border:0;padding:6px 0 0;
-  cursor:pointer;text-align:left;
-}
-.vpempty{font-size:13px;color:var(--muted);padding:16px 0}
+[data-theme="dark"] 
+
 @media (max-width:600px){
-  .vpevent{grid-template-columns:1fr}
-  .vpopen{grid-column:1}
-  .vpbox{max-height:92vh}
+  
+  
+  
 }
 
 /* ---------------- accessibility rows ---------------- */
@@ -1225,32 +1162,8 @@ h1,.stair .l1,.stair .l2{
 .access dd:last-child{color:var(--muted);font-style:italic}
 
 /* venue list inside the overlay */
-.vpvenlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;padding:14px 0}
-.vpven{
-  display:flex;align-items:center;gap:8px;justify-content:space-between;
-  font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;
-  padding:10px 12px;border:1.5px solid var(--line);background:transparent;color:var(--ink);
-  cursor:pointer;text-align:left;
-}
-.vpven:hover{background:var(--ink);color:var(--paper)}
-.vpven .vcount{color:var(--accent);font-weight:700}
-.vpven:hover .vcount{color:var(--accent)}
 
-.vpback{
-  font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
-  padding:7px 11px;border:1.5px solid var(--line);background:transparent;color:var(--ink);
-  cursor:pointer;margin-right:8px;
-}
-.vpback:hover{background:var(--ink);color:var(--paper)}
-.vpcount{
-  display:inline-block;margin-left:8px;padding:2px 7px;
-  font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;
-  background:var(--accent);color:var(--accent-ink);vertical-align:middle;
-}
-.vpactions{display:flex;align-items:flex-start;margin-left:auto}
-.vpclose{margin-left:0}
-
-/* ---------------- active venue filter ---------------- */
+/* active venue filter */
 .venuebar{
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
   margin:0 0 12px;padding:11px 14px;
