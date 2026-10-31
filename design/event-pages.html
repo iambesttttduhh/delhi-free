@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Delhi, Free — four designs for the event page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f2f0e9; --paper2:#eae7dc; --card:#fbfaf6; --ink:#0c0c0d; --ink2:#3a3935;
+    --muted:#6b6a63; --rule:#cdc9bb; --accent:#ff3b1f; --green:#3f7a24; --amber:#a86200;
+    --disp:"Anton",Impact,sans-serif; --body:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6}
+  .chrome{max-width:1180px;margin:0 auto;padding:26px 20px 0}
+  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+  h1{font-family:var(--disp);font-size:clamp(30px,5vw,46px);line-height:.96;margin:0 0 8px;letter-spacing:-.01em}
+  .lede{color:var(--ink2);max-width:70ch;margin:0 0 18px}
+  .tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:1.5px solid var(--ink);margin-top:6px}
+  .tab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:11px 16px;
+    border:1px solid var(--rule);border-bottom:0;background:var(--paper2);color:var(--ink2);cursor:pointer;margin-right:4px}
+  .tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .note{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;padding:14px 0 4px;border-bottom:1px solid var(--rule)}
+  .note div{font-size:13px;color:var(--ink2);padding-bottom:10px}
+  .note b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+  @media (max-width:760px){ .note{grid-template-columns:1fr} }
+
+  /* the frame the mockups sit in — mobile width, like a phone */
+  .stage{padding:22px 0 70px;display:flex;justify-content:center}
+  .phone{width:100%;max-width:430px;background:var(--paper);border:1px solid var(--rule);
+    box-shadow:0 1px 0 var(--rule), 0 18px 40px rgba(12,12,13,.07);padding:0 20px 34px}
+  .variant{display:none}
+  .variant.on{display:block}
+  .page{font-size:15px}
+  .page a{color:var(--ink)}
+  .topline{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);
+    font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+    border-bottom:1.5px solid var(--ink);padding:14px 0 9px}
+  .topline a{text-decoration:none;border-bottom:1px solid var(--accent)}
+  h2.t{font-family:var(--disp);font-size:32px;line-height:.98;margin:20px 0 8px;letter-spacing:-.01em}
+  .dl{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  .lede2{font-size:15.5px;color:var(--ink2);margin:0 0 18px}
+  figure{margin:0}
+  img{display:block;width:100%;height:auto;border:1px solid var(--rule)}
+  .facts{border-top:1px solid var(--rule);margin:20px 0 0}
+  .facts dl{display:grid;grid-template-columns:104px 1fr;gap:0;margin:0}
+  .facts dt,.facts dd{margin:0;padding:8px 0;border-bottom:.5px solid var(--rule);font-size:13px}
+  .facts dt{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:10px}
+  .facts dd{color:var(--ink2)}
+  h3.s{font-family:var(--disp);font-size:17px;margin:24px 0 5px;letter-spacing:.01em}
+  p{color:var(--ink2);margin:0 0 12px;font-size:14px}
+  .run{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+  .run li{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:6px 0 6px 12px;font-size:13px;border-bottom:.5px solid var(--rule)}
+  .run li:last-child{border-bottom:0}
+  .run .rt{font-family:var(--mono);font-size:9.5px;color:var(--accent);padding-top:2px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 0;padding:0;list-style:none}
+  .tags li{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);padding:3px 7px;color:var(--muted)}
+  .acts{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 0}
+  .btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;
+    border:1.5px solid var(--ink);background:var(--card);color:var(--ink);text-decoration:none}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .trust{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--muted);border-top:1px solid var(--rule);margin-top:22px;padding-top:10px}
+  .trust b{color:var(--green)}
+
+  /* ---------------- B: poster ---------------- */
+  .b .topline{border-bottom:0;padding-bottom:4px}
+  .b h2.t{font-size:44px;line-height:.92;margin:8px 0 0}
+  .b .strip{display:flex;gap:0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);margin:16px 0 0}
+  .b .strip div{flex:1;padding:9px 8px;border-right:1px solid var(--rule)}
+  .b .strip div:last-child{border-right:0}
+  .b .strip b{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .b .strip span{font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .b figure{margin:16px 0 0}
+  .b .cols{column-count:1;margin-top:16px}
+  .b .big{font-family:var(--disp);font-size:22px;line-height:1.1;color:var(--ink);margin:18px 0 8px}
+
+  /* ---------------- C: dossier ---------------- */
+  .c .topline{border-bottom:.5px solid var(--rule)}
+  .c .idbox{border:1.5px solid var(--ink);margin:16px 0 0}
+  .c .idbox dl{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0}
+  .c .idbox div{border-right:.5px solid var(--rule);border-bottom:.5px solid var(--rule);padding:9px 10px}
+  .c .idbox div:nth-child(2n){border-right:0}
+  .c .idbox b{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .c .idbox span{font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .c h2.t{font-size:26px;margin:16px 0 6px}
+  .c figure{margin:14px 0 0;width:62%}
+  .c .lede2{font-size:13.5px}
+  .c .meta{margin-top:18px;border-top:1px solid var(--rule);padding-top:10px}
+  .c .meta p{font-family:var(--mono);font-size:10.5px;line-height:1.75;color:var(--ink2);margin:0}
+
+  /* ---------------- D: field notes ---------------- */
+  .d .topline{border-bottom:1.5px solid var(--ink)}
+  .d .split{display:grid;grid-template-columns:1fr;gap:0}
+  .d .side{border-bottom:1px solid var(--rule);padding:14px 0}
+  .d .side dl{margin:0;display:grid;grid-template-columns:74px 1fr;gap:0}
+  .d .side dt{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:3px 0}
+  .d .side dd{margin:0;font-size:12px;color:var(--ink2);padding:3px 0}
+  .d h2.t{font-size:34px;line-height:.95;margin:16px 0 6px}
+  .d .pull{font-family:var(--disp);font-size:20px;line-height:1.18;color:var(--ink);
+    border-left:3px solid var(--accent);padding:2px 0 2px 12px;margin:20px 0}
+  .d figure{margin:16px 0}
+  @media (min-width:520px){
+    .d .split{grid-template-columns:132px 1fr;gap:20px}
+    .d .side{border-bottom:0;border-right:1px solid var(--rule);padding:0 16px 0 0}
+    .d .side dl{grid-template-columns:1fr}
+    .d .side dt{padding-top:10px}
+  }
+  footer{max-width:1180px;margin:0 auto;padding:0 20px 60px;font-family:var(--mono);font-size:10.5px;color:var(--muted);
+    border-top:1.5px solid var(--ink);padding-top:12px}
+</style>
+</head>
+<body>
+<div class="chrome">
+  <p class="kicker">Delhi, Free / event page / four directions</p>
+  <h1>Four ways to build<br>one event page</h1>
+  <p class="lede">The same listing in all four — The Evolution of the Soothsayer, Part 2 at Nature Morte, verified against the gallery's own page today. Same words, same photograph, same rules: cream paper, Anton, hairlines, no cropping, no overlay, no invented detail. What changes is hierarchy — what a reader meets first. Pick one and I'll apply it to all 51 pages.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-v="a">A — editorial</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="b">B — poster</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="c">C — dossier</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="d">D — field notes</button>
+  </div>
+
+  <div class="note" id="note"></div>
+</div>
+
+<div class="stage">
+<div class="phone">
+
+<!-- ============ A: editorial (what is live now) ============ -->
+<section class="variant on page a" data-v="a">
+  <div class="topline"><a href="#">Delhi, Free</a><span>One event</span></div>
+  <p class="dl">Thu 22 Oct 10:00 am – Sat 12 Dec 2026</p>
+  <h2 class="t">The Evolution of the Soothsayer, Part 2</h2>
+  <p class="lede2">Manisha Parekh's practice, in its second instalment at Nature Morte — work that sits between drawing, sculpture and installation, made for a room rather than a wall.</p>
+  <figure><img src="https://iambesttttduhh.github.io/delhi-free/img/p04-900.webp" alt="The Evolution of the Soothsayer, Part 2 — photograph" width="1500" height="998"></figure>
+  <div class="facts"><dl>
+    <dt>When</dt><dd>Thu 22 Oct 10:00 am – Sat 12 Dec 2026</dd>
+    <dt>Where</dt><dd>Nature Morte, A9 Gulmohar Park, New Delhi 110049</dd>
+    <dt>Metro</dt><dd>Green Park · Yellow · ~11 min walk</dd>
+    <dt>Entry</dt><dd>Free, open to all.</dd>
+    <dt>Neighbourhood</dt><dd>Gulmohar Park</dd>
+  </dl></div>
+  <h3 class="s">What happens</h3>
+  <p>One gallery, one artist, a handful of rooms. You walk through at your own pace and read the wall text at the entrance, which is worth two minutes before you start looking.</p>
+  <h3 class="s">Run of show</h3>
+  <ol class="run">
+    <li><span class="rt">10:00 am</span><span>Gallery opens</span></li>
+    <li><span class="rt">any time</span><span>The rooms, at your own pace</span></li>
+    <li><span class="rt">6:00 pm</span><span>Close — closed Sundays</span></li>
+  </ol>
+  <h3 class="s">Food</h3>
+  <p>No food; Gulmohar Park's cafés are a short walk.</p>
+  <h3 class="s">Before you go</h3>
+  <div class="facts"><dl>
+    <dt>Getting there</dt><dd>Green Park (Yellow) or Hauz Khas (Yellow/Magenta), then a 10-minute walk.</dd>
+    <dt>How long</dt><dd>20–40 minutes.</dd>
+    <dt>Worth knowing</dt><dd>Closed Sundays. Nature Morte also runs a second space at The Dhan Mill in Chhatarpur — check which one before you go.</dd>
+  </dl></div>
+  <ul class="tags"><li>Exhibition</li><li>Contemporary art</li></ul>
+  <div class="acts">
+    <a class="btn solid" href="#">Add to calendar</a>
+    <a class="btn" href="#">Open in Maps</a>
+    <a class="btn" href="#">Source listing</a>
+  </div>
+  <p class="trust">Listings change. Last checked <b>31 Oct 2026</b> · status <b>verified</b> · Organiser page confirms 22 October – 12 December 2026 at A9 Gulmohar Park, Mon–Sat 10am–6pm.</p>
+</section>
+
+<!-- ============ B: poster ============ -->
+<section class="variant page b" data-v="b">
+  <div class="topline"><a href="#">Delhi, Free</a><span>One event</span></div>
+  <h2 class="t">The Evolution<br>of the Soothsayer,<br>Part 2</h2>
+  <div class="strip">
+    <div><b>Dates</b><span>22 Oct – 12 Dec</span></div>
+    <div><b>Entry</b><span>Free</span></div>
+    <div><b>Open</b><span>10–6, not Sun</span></div>
+  </div>
+  <figure><img src="https://iambesttttduhh.github.io/delhi-free/img/p04-900.webp" alt="The Evolution of the Soothsayer, Part 2 — photograph" width="1500" height="998"></figure>
+  <p class="big">One room, one artist, twenty to forty minutes.</p>
+  <p>Manisha Parekh's practice, in its second instalment at Nature Morte — work that sits between drawing, sculpture and installation, made for a room rather than a wall.</p>
+  <p>You walk through at your own pace and read the wall text at the entrance, which is worth two minutes before you start looking. The gallery also runs a second space at The Dhan Mill in Chhatarpur — check which one before you go.</p>
+  <div class="facts"><dl>
+    <dt>Where</dt><dd>Nature Morte, A9 Gulmohar Park, New Delhi 110049</dd>
+    <dt>Metro</dt><dd>Green Park · Yellow · ~11 min walk</dd>
+    <dt>Food</dt><dd>None on site; cafés a short walk.</dd>
+  </dl></div>
+  <div class="acts">
+    <a class="btn solid" href="#">Add to calendar</a>
+    <a class="btn" href="#">Maps</a>
+  </div>
+  <p class="trust">Last checked <b>31 Oct 2026</b> · verified against naturemorte.com</p>
+</section>
+
+<!-- ============ C: dossier ============ -->
+<section class="variant page c" data-v="c">
+  <div class="topline"><a href="#">Delhi, Free</a><span>Record / e2</span></div>
+  <div class="idbox"><dl>
+    <div><b>Dates</b><span>22.10 – 12.12.26</span></div>
+    <div><b>Hours</b><span>10:00 – 18:00</span></div>
+    <div><b>Closed</b><span>Sunday</span></div>
+    <div><b>Entry</b><span>Free</span></div>
+    <div><b>Format</b><span>Walk and look</span></div>
+    <div><b>Status</b><span>Verified 31.10.26</span></div>
+  </dl></div>
+  <h2 class="t">The Evolution of the Soothsayer, Part 2</h2>
+  <p class="lede2">Manisha Parekh's second instalment at Nature Morte — drawing, sculpture and installation, made for a room rather than a wall.</p>
+  <figure><img src="https://iambesttttduhh.github.io/delhi-free/img/p04-900.webp" alt="The Evolution of the Soothsayer, Part 2 — photograph" width="1500" height="998"></figure>
+  <div class="meta">
+    <p>VENUE — Nature Morte, A9 Gulmohar Park, New Delhi 110049<br>
+    METRO — Green Park (Yellow), ~11 min walk<br>
+    DURATION — 20–40 min · no performance<br>
+    FOOD — none on site<br>
+    SOURCE — naturemorte.com · checked 31.10.26</p>
+  </div>
+  <h3 class="s">Notes</h3>
+  <p>One gallery, one artist, a handful of rooms. Read the wall text at the entrance — two minutes well spent. Closed Sundays. A second space at The Dhan Mill, Chhatarpur, runs in parallel: check which before you travel.</p>
+  <div class="acts"><a class="btn solid" href="#">Add to calendar</a><a class="btn" href="#">Maps</a></div>
+</section>
+
+<!-- ============ D: field notes ============ -->
+<section class="variant page d" data-v="d">
+  <div class="topline"><a href="#">Delhi, Free</a><span>One event</span></div>
+  <div class="split">
+    <aside class="side"><dl>
+      <dt>When</dt><dd>22 Oct – 12 Dec</dd>
+      <dt>Hours</dt><dd>10–6, closed Sun</dd>
+      <dt>Where</dt><dd>Nature Morte, Gulmohar Park</dd>
+      <dt>Metro</dt><dd>Green Park, 11 min</dd>
+      <dt>Entry</dt><dd>Free</dd>
+    </dl></aside>
+    <div>
+      <h2 class="t">The Evolution of the Soothsayer, Part 2</h2>
+      <p class="lede2">Manisha Parekh's practice, in its second instalment at Nature Morte.</p>
+      <p>Work that sits between drawing, sculpture and installation, made for a room rather than a wall. One gallery, one artist, a handful of rooms.</p>
+      <p class="pull">Read the wall text at the entrance. Two minutes, and the show opens up.</p>
+      <figure><img src="https://iambesttttduhh.github.io/delhi-free/img/p04-900.webp" alt="The Evolution of the Soothsayer, Part 2 — photograph" width="1500" height="998"></figure>
+      <p>You walk through at your own pace — twenty minutes if you move quickly, forty if you read everything. No performance, no schedule. Closed Sundays.</p>
+      <p>Worth knowing: the gallery runs a second space at The Dhan Mill in Chhatarpur. Check which one before you travel.</p>
+      <div class="acts"><a class="btn solid" href="#">Add to calendar</a><a class="btn" href="#">Maps</a></div>
+      <p class="trust">Last checked <b>31 Oct 2026</b> · verified</p>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+
+<footer>Delhi, Free — four directions for the event page · same listing, same photograph, same rules · 31 Oct 2026</footer>
+
+<script>
+(function(){
+  "use strict";
+  var COPY = {
+    a: ["Editorial — what is live now",
+        "Photograph first, then a facts table, then the writing in sections. Safest for readers who want to know what it is before deciding; it is also the tallest of the four, and on a phone you scroll past the picture before you learn the entry price."],
+    b: ["Poster",
+        "The headline is the picture. Three numbers in a strip — dates, entry, opening hours — then the photograph at full width. Fastest to decide from, and it looks like the listing is an event rather than a record. Costs you the detail: run of show and food are cut or pushed to the bottom."],
+    c: ["Dossier",
+        "Facts first, in a box, in the idiom of a card catalogue. Best when someone is standing outside deciding whether to go in, and best for scanning many pages quickly. The photograph drops to a column and the warmth goes out of the page — closest to a database view."],
+    d: ["Field notes",
+        "A narrow margin of practical facts, a wide column of writing, and one pull quote. Reads like a magazine page rather than a listing, and the sticky margin keeps the essentials in view on a phone. Costs more care per event: the pull quote has to be earned from the copy, not invented."]
+  };
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var variants = [].slice.call(document.querySelectorAll('.variant'));
+  var note = document.getElementById('note');
+
+  function show(v){
+    variants.forEach(function(s){ s.classList.toggle('on', s.dataset.v === v); });
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.v === v)); });
+    var c = COPY[v];
+    note.innerHTML = '<div><b>Direction</b>' + c[0] + '</div><div><b>What it buys, what it costs</b>' + c[1] + '</div>';
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.v); }); });
+  show('a');
+})();
+</script>
+</body>
+</html>
