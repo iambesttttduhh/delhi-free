@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e48-20261127@delhi-free
+DTSTAMP:20261031T073255Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261129
+SUMMARY:Novembre Numérique — Let's Draw
+LOCATION:Alliance Française de Delhi\, 72 Lodhi Estate\, New Delhi 110003
+DESCRIPTION:Fri 27 Nov 2026\n\nAn installation room where drawings sent fr
+ om your phone appear on a wall screen alongside ones from other cities\, 
+ plus the AI mirror that repaints you. On one evening a projection turns a
+  building façade into a mural that lasts the night.\n\nSource: https://w
+ ww.institutfrancaisindia.in/event/novembre-numerique-2026/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Novembre Numérique — Let's Draw starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

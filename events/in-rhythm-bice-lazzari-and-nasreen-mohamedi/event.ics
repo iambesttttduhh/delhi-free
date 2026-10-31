@@ -1,0 +1,35 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e42-20261113@delhi-free
+DTSTAMP:20261031T073255Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261223
+SUMMARY:In-Rhythm — Bice Lazzari and Nasreen Mohamedi
+LOCATION:Kiran Nadar Museum of Art\, 145\, DLF South Court Mall\, Saket\, 
+ New Delhi 110017
+DESCRIPTION:Fri 13 Nov – Tue 22 Dec 2026\n\nThree floors of exhibitions.
+  The Lazzari–Mohamedi show is hung as a conversation\, room by room\, s
+ o the two practices answer each other. Free\, no ticket\, walk in.\n\nSou
+ rce: https://knma.in/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:In-Rhythm — Bice Lazzari and Nasreen Mohamedi starts in 2 ho
+ urs
+END:VALARM
+END:VEVENT
+END:VCALENDAR

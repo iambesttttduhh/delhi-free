@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Delhi, Free">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src https://air-quality-api.open-meteo.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://air-quality-api.open-meteo.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 
 <meta property="og:title" content="Delhi, Free — every free evening in Delhi, ranked by distance">
 <meta property="og:description" content="51 events across 676 Delhi-NCR neighbourhoods, 29 Oct – 30 Nov 2026. Search your area or pincode and the list reorders nearest first.">
@@ -808,7 +808,7 @@ body.panel-hidden #panelPeek{
 }
 .vbtn:hover{background:var(--ink);color:var(--paper)}
 .vbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.vbtn .vcount{font-size:11px;opacity:.65}
+.vbtn .vcount{margin-left:.5em;font-size:11px;opacity:.65}
 
 /* ---------------- AQI: numbers first ---------------- */
 .aqibar{align-items:center;gap:14px;padding:12px 16px}
@@ -5190,8 +5190,13 @@ h1,.stair .l1,.stair .l2{
     var n = normTerm(raw), sq = squash(n);
     if (!sq) return [];
     var head = sq.slice(0, Math.min(4, sq.length)), out = [];
+    var seen = {};
     for (var i = 0; i < INDEX.length && out.length < 4; i++) {
-      if (INDEX[i][0].indexOf(head) === 0 && out.indexOf(INDEX[i][1]) === -1) out.push(INDEX[i][1]);
+      if (INDEX[i][0].indexOf(head) !== 0) continue;
+      var lab = labelFor(INDEX[i][1]);
+      if (seen[lab]) continue;
+      seen[lab] = 1;
+      out.push(INDEX[i][1]);
     }
     /* nothing starts with what was typed — offer the nearest spellings */
     if (!out.length && sq.length >= 3) {
@@ -5285,28 +5290,73 @@ h1,.stair .l1,.stair .l2{
     return {y: +m[1], mo: +m[2], d: +m[3], h: m[4] !== undefined ? +m[4] : null, mi: m[5] !== undefined ? +m[5] : null};
   }
 
+  function icsStamp() {
+    var d = new Date();
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+           'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+  }
+
+  /* the "What happens" paragraph sits in a .dgroup under its own <h4> —
+     there is no .happens class in the markup, so match the heading instead */
+  function happensFor(r) {
+    var groups = r.querySelectorAll('.dgroup');
+    for (var i = 0; i < groups.length; i++) {
+      var h = groups[i].querySelector('h4');
+      if (h && /^what happens/i.test(h.textContent.trim())) {
+        var p = groups[i].querySelector('p');
+        if (p) return p.textContent.trim();
+      }
+    }
+    return '';
+  }
+
   function icsEvent(r) {
     var p = parseIso(r.dataset.iso);
     if (!p) return '';
     var mins = parseInt(r.dataset.mins, 10);
     if (isNaN(mins)) mins = 120;
-    var title = r.dataset.title;
+    var title = r.dataset.title || 'Event';
     var loc = r.dataset.loc;
     var when = r.dataset.when;
     var desc = r.dataset.desc || '';
-    var happens = r.querySelector('.happens') ? r.querySelector('.happens').textContent.trim() : '';
+    /* the stored description is cut at ~160 characters; if it was cut mid-word,
+       end on a word boundary rather than exporting a half-finished sentence */
+    if (desc && !/[.!?\u2026]$/.test(desc)) {
+      var cut = desc.replace(/\s+\S*$/, '');
+      desc = (cut.length > 40 ? cut : desc) + '\u2026';
+    }
+    var happens = happensFor(r);
+
+    /* a run of several days ends on its last day, not two hours after it opened */
+    var untilP = parseIso(r.dataset.until);
+    var multi = false;
+    if (untilP) {
+      var sDay = new Date(p.y, p.mo - 1, p.d);
+      var eDay = new Date(untilP.y, untilP.mo - 1, untilP.d);
+      multi = eDay.getTime() > sDay.getTime();
+    }
+
     var uid = 'dfe-' + r.dataset.i + '-2026@delhi-free';
-    var stamp = '20260101T000000Z';
-    var lines = ['BEGIN:VEVENT', 'UID:' + uid, 'DTSTAMP:' + stamp];
+    var lines = ['BEGIN:VEVENT', 'UID:' + uid, 'DTSTAMP:' + icsStamp()];
 
     if (p.h === null) {
-      var nxt = new Date(Date.UTC(p.y, p.mo - 1, p.d));
-      nxt.setUTCDate(nxt.getUTCDate() + 1);
-      lines.push('DTSTART;VALUE=DATE:' + p.y + pad(p.mo) + pad(p.d));
-      lines.push('DTEND;VALUE=DATE:' + nxt.getUTCFullYear() + pad(nxt.getUTCMonth() + 1) + pad(nxt.getUTCDate()));
+      var startD = new Date(Date.UTC(p.y, p.mo - 1, p.d));
+      var endExcl = new Date(Date.UTC(
+        multi ? untilP.y : p.y,
+        multi ? untilP.mo - 1 : p.mo - 1,
+        multi ? untilP.d : p.d));
+      endExcl.setUTCDate(endExcl.getUTCDate() + 1);   /* DTEND is exclusive for all-day events */
+      lines.push('DTSTART;VALUE=DATE:' + startD.getUTCFullYear() + pad(startD.getUTCMonth() + 1) + pad(startD.getUTCDate()));
+      lines.push('DTEND;VALUE=DATE:' + endExcl.getUTCFullYear() + pad(endExcl.getUTCMonth() + 1) + pad(endExcl.getUTCDate()));
     } else {
-      var st = new Date(p.y, p.mo - 1, p.d, p.h, p.mi, 0);
-      var en = new Date(st.getTime() + mins * 60000);
+      var st = new Date(p.y, p.mo - 1, p.d, p.h, p.mi || 0, 0);
+      var en;
+      if (multi) {
+        en = new Date(untilP.y, untilP.mo - 1, untilP.d, st.getHours(), st.getMinutes(), 0);
+        if (en.getTime() <= st.getTime()) en = new Date(st.getTime() + mins * 60000);
+      } else {
+        en = new Date(st.getTime() + mins * 60000);
+      }
       lines.push('DTSTART;TZID=Asia/Kolkata:' + st.getFullYear() + pad(st.getMonth() + 1) + pad(st.getDate()) +
                  'T' + pad(st.getHours()) + pad(st.getMinutes()) + '00');
       lines.push('DTEND;TZID=Asia/Kolkata:' + en.getFullYear() + pad(en.getMonth() + 1) + pad(en.getDate()) +
@@ -5315,16 +5365,34 @@ h1,.stair .l1,.stair .l2{
     lines.push('SUMMARY:' + icsText(title));
     if (loc) lines.push('LOCATION:' + icsText(loc));
     var body = when + (r.dataset.timeapprox === '1' ? ' (time approximate)' : '');
-    if (desc) body += '\\n\\n' + desc;
-    if (happens) body += '\\n\\nWhat happens: ' + happens;
+    if (multi && untilP) {
+      var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      body += '\n\nLast day: ' + untilP.d + ' ' + MON[untilP.mo - 1];
+    }
+    if (desc) body += '\n\n' + desc;
+    if (happens) body += '\n\nWhat happens: ' + happens;
     lines.push('DESCRIPTION:' + icsText(body));
     lines.push('BEGIN:VALARM');
     lines.push('TRIGGER:-PT2H');
     lines.push('ACTION:DISPLAY');
-    lines.push('DESCRIPTION:' + (o.title || 'Event') + ' starts in 2 hours');
+    lines.push('DESCRIPTION:' + icsText(title) + ' starts in 2 hours');
     lines.push('END:VALARM');
     lines.push('END:VEVENT');
-    return lines.join('\r\n');
+    return lines.map(icsFold).join('\r\n');
+  }
+
+  /* RFC 5545 folds any content line longer than 75 octets */
+  function icsFold(line) {
+    if (!line) return line;
+    var out = [], cur = '', size = 0;
+    for (var i = 0; i < line.length; i++) {
+      var ch = line.charAt(i), b = 1;
+      if (ch.charCodeAt(0) > 127) b = 2;           /* close enough for accented Latin */
+      if (size + b > 74) { out.push(cur); cur = ' ' + ch; size = 1 + b; }
+      else { cur += ch; size += b; }
+    }
+    out.push(cur);
+    return out.join('\r\n');
   }
 
   function icsText(s) {
@@ -5335,7 +5403,12 @@ h1,.stair .l1,.stair .l2{
   function downloadIcs(events, filename) {
     if (!events.length) return;
     var out = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Delhi Free//Events//EN',
-               'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+               'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+               'X-WR-TIMEZONE:Asia/Kolkata',
+               'BEGIN:VTIMEZONE', 'TZID:Asia/Kolkata',
+               'BEGIN:STANDARD', 'DTSTART:19700101T000000',
+               'TZOFFSETFROM:+0530', 'TZOFFSETTO:+0530', 'TZNAME:IST',
+               'END:STANDARD', 'END:VTIMEZONE'];
     events.forEach(function (r) { var e = icsEvent(r); if (e) out.push(e); });
     out.push('END:VCALENDAR');
     var blob = new Blob([out.join('\r\n') + '\r\n'], {type: 'text/calendar;charset=utf-8'});

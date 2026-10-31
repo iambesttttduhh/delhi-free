@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e4-20261028@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261028T100000
+DTEND;TZID=Asia/Kolkata:20261118T100000
+SUMMARY:Rina Banerjee — Discriminating taste
+LOCATION:Vadehra Art Gallery\, D-53 Defence Colony\, New Delhi 110024
+DESCRIPTION:Wed 28 Oct 10:00 am – Wed 18 Nov 2026\n\nA single large room
+  of paintings and assemblages\, with sculpture on plinths between them. Y
+ ou walk it slowly — most of the looking is in the detail\, since the su
+ rfaces carry shells\, sequins and sari trim. No sequence\, no seating.\n\
+ nSource: https://www.vadehraart.com/exhibitions/330-rina-banerjee-discrim
+ inating-taste-hallucinations-of-the-tongue-d-53-defence-colony-new-delhi/
+ overview/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Rina Banerjee — Discriminating taste starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

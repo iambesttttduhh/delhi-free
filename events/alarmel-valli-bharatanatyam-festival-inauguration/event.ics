@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e12-20261030@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261030T183000
+DTEND;TZID=Asia/Kolkata:20261030T203000
+SUMMARY:Alarmel Valli — Bharatanatyam\, festival inauguration
+LOCATION:Fountain Lawns\, India International Centre\, 40 Max Mueller Marg
+ \, New Delhi 110003
+DESCRIPTION:Fri 30 Oct 2026 · 6:30 pm – 8:30 pm\n\nInauguration first: 
+ lamp-lighting\, a couple of short speeches\, then the recital itself — 
+ a full Bharatanatyam margam with live orchestra\, around 90 minutes. Afte
+ rwards the food counters open and a film starts indoors.\n\nSource: https
+ ://iicdelhi.in/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Alarmel Valli — Bharatanatyam\, festival inauguration starts
+  in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

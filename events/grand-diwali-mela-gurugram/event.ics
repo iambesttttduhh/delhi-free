@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e22-20261031@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261031T110000
+DTEND;TZID=Asia/Kolkata:20261102T110000
+SUMMARY:Grand Diwali Mela\, Gurugram
+LOCATION:Apparel House\, Sector 44\, Gurugram\, Haryana 122003
+DESCRIPTION:Sat 31 Oct 11:00 am – Mon 2 Nov 2026\n\nRows of stalls in an
+  air-conditioned hall — clothes\, jewellery\, décor\, food counters 
+ — plus a tarot reader and a mehndi counter. Walk in\, browse\, buy\, le
+ ave.\n\nSource: https://www.eventsgram.in/event/grand-diwali-mela-10/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Grand Diwali Mela\, Gurugram starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

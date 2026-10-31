@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e39-20261104@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;VALUE=DATE:20261104
+DTEND;VALUE=DATE:20261105
+SUMMARY:No Refusal — exhibition opens
+LOCATION:Visual Arts Gallery\, India Habitat Centre\, Lodhi Road\, New Del
+ hi 110003
+DESCRIPTION:Wed 4 Nov 2026\n\nA hang of works in a small gallery with a te
+ xt on the wall. Twenty minutes and you're through — pair it with lunch 
+ in the market.\n\nSource: https://delhi2go.in/events/art
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:No Refusal — exhibition opens starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

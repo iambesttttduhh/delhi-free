@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e11-20261030@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261030T103000
+DTEND;TZID=Asia/Kolkata:20261105T103000
+SUMMARY:Blind Relief Association Diwali Bazaar
+LOCATION:The Blind Relief Association\, Lal Bahadur Shastri Marg\, Lodhi R
+ oad\, New Delhi 110003
+DESCRIPTION:Fri 30 Oct 10:30 am – Thu 5 Nov 2026\n\nAn open-air market a
+ cross the lawns: 260+ stalls of candles\, diyas\, soaps\, paper goods and
+  food. Evenings bring a stage programme — dandiya\, a fashion show by v
+ isually impaired youth\, street theatre on inclusion\, and a children's p
+ ot-painting contest.\n\nSource: https://delhi-fun-dos.com/events/blind-sc
+ hool-diwali-mela-2026-blind-relief-association-diwali-bazaar/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Blind Relief Association Diwali Bazaar starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

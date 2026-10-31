@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e15-20261030@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261030T193000
+DTEND;TZID=Asia/Kolkata:20261030T213000
+SUMMARY:Timeless Ghalib
+LOCATION:Stein Auditorium\, India Habitat Centre\, Lodhi Road\, New Delhi 
+ 110003
+DESCRIPTION:Fri 30 Oct 2026 · 7:30 pm – 9:30 pm\n\nA staged evening of 
+ ghazals: singers with harmonium and tabla alternating with straight recit
+ ations\, built around Ghalib's best-known verses\, with a compere linking
+  one to the next.\n\nSource: https://indiahabitat.org/Events
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Timeless Ghalib starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

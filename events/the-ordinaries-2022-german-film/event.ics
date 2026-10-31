@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e36-20261103@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261103T190000
+DTEND;TZID=Asia/Kolkata:20261103T210000
+SUMMARY:The Ordinaries (2022) — German film
+LOCATION:Siddhartha Hall\, Goethe-Institut / Max Mueller Bhavan\, 3 Kastur
+ ba Gandhi Marg\, New Delhi 110001
+DESCRIPTION:Tue 3 Nov 2026 · 7:00 pm – 9:00 pm\n\nThe film runs about 1
+ 05 minutes\, then a discussion led by Vani Subramanian\, then questions f
+ rom the room.\n\nSource: https://www.goethe.de/ins/in/en/sta/del/ver.cfm
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:The Ordinaries (2022) — German film starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

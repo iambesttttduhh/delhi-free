@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e25-20261101@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261101T110000
+DTEND;TZID=Asia/Kolkata:20261101T130000
+SUMMARY:Kalapini Komkali — classical vocal
+LOCATION:C.D. Deshmukh Auditorium\, India International Centre\, 40 Max Mu
+ eller Marg\, New Delhi 110003
+DESCRIPTION:Sun 1 Nov 2026 · 11:00 am – 1:00 pm\n\nA seated vocal recit
+ al with harmonium and tabla — a slow alap\, then compositions\, about 7
+ 5 minutes. Films follow in the same building if you want to stay.\n\nSour
+ ce: https://iicdelhi.in/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Kalapini Komkali — classical vocal starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

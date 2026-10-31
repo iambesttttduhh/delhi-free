@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e30-20261101@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261101T120000
+DTEND;TZID=Asia/Kolkata:20261101T140000
+SUMMARY:Voices — open mic for poetry and spoken word
+LOCATION:Hideout Studio\, Shop 1/Basement\, PVR Anupam\, Saket Road\, Sake
+ t\, New Delhi 110017
+DESCRIPTION:Sun 1 Nov 2026 · 12:00 pm – 2:00 pm\n\nAn open mic with a h
+ ost and a sign-up list: performers do about five minutes each\, mostly po
+ etry and spoken word in Hindi\, with a small audience that came to listen
+ .\n\nSource: https://gigsnshows.com/shows/voices-open-mic-for-poetry-stor
+ ytelling-spoken-514d2f9abd/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Voices — open mic for poetry and spoken word starts in 2 hou
+ rs
+END:VALARM
+END:VEVENT
+END:VCALENDAR

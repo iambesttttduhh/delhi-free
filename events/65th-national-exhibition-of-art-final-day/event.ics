@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e20-20261031@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:65th National Exhibition of Art — final day
+LOCATION:Lalit Kala Akademi\, Rabindra Bhawan\, 35 Ferozeshah Road\, New D
+ elhi 110001
+DESCRIPTION:Sat 31 Oct 2026\n\nSeveral galleries of juried work — painti
+ ng\, sculpture\, prints\, installation — with the print biennale in a s
+ eparate hall. Free to wander at your own pace\; no guided route.\n\nSourc
+ e: https://lalitkala.gov.in/events
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:65th National Exhibition of Art — final day starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

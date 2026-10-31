@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e29-20261101@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261101T090000
+DTEND;TZID=Asia/Kolkata:20261101T110000
+SUMMARY:Sunday Book Market
+LOCATION:Mahila Haat\, Asaf Ali Road\, New Delhi 110002
+DESCRIPTION:Sun 1 Nov 2026 · 9:00 am – 11:00 am (time approximate)\n\nT
+ arpaulin sheets on the ground with books stacked in rows\, sellers squatt
+ ing behind them. You dig\, ask what a pile costs\, and haggle.\n\nSource:
+  https://delhi2go.in/blog/things-to-do-in-delhi-november-2026
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Sunday Book Market starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

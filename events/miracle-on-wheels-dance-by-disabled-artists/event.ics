@@ -1,0 +1,35 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e47-20261126@delhi-free
+DTSTAMP:20261031T073255Z
+DTSTART;TZID=Asia/Kolkata:20261126T190000
+DTEND;TZID=Asia/Kolkata:20261126T210000
+SUMMARY:Miracle on Wheels — dance by disabled artists
+LOCATION:The Stein Auditorium\, India Habitat Centre\, Lodhi Road\, New De
+ lhi 110003
+DESCRIPTION:Thu 26 Nov 2026 · 7:00 pm – 9:00 pm\n\nA staged dance eveni
+ ng: several pieces performed by a troupe of artists with disabilities\, i
+ ntroduced between numbers. About ninety minutes\, no interval.\n\nSource:
+  https://indiahabitat.org/Events_details/867
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Miracle on Wheels — dance by disabled artists starts in 2 ho
+ urs
+END:VALARM
+END:VEVENT
+END:VCALENDAR

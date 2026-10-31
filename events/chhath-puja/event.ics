@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e41-20261113@delhi-free
+DTSTAMP:20261031T073255Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261117
+SUMMARY:Chhath Puja
+LOCATION:Yamuna ghats\, Palla to Okhla\; plus parks and ponds citywide
+DESCRIPTION:Fri 13 Nov – Mon 16 Nov 2026\n\nFamilies gather at the water
+  at sunset with bamboo baskets of fruit and thekua. A priest leads\, drum
+ s and Bhojpuri folk songs run through it\, and the offerings go up as the
+  sun goes down — then everyone waits for sunrise to do it again.\n\nSou
+ rce: https://indiago.app/en/delhi/festivals/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Chhath Puja starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

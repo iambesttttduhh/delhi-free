@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e45-20261124@delhi-free
+DTSTAMP:20261031T073255Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:Guru Nanak Jayanti — Nagar Kirtan
+LOCATION:Gurdwara Sis Ganj Sahib\, Chandni Chowk\, New Delhi 110006
+DESCRIPTION:Tue 24 Nov 2026\n\nThe procession moves through Chandni Chowk 
+ with five covered Palkis\, brass bands and gatka teams\, stopping for wat
+ er and langar along the way. At the gurdwara: continuous kirtan and langa
+ r served without a break.\n\nSource: https://indiago.app/en/delhi/festiva
+ ls/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Guru Nanak Jayanti — Nagar Kirtan starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

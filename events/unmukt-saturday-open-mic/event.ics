@@ -1,0 +1,35 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e23-20261031@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;TZID=Asia/Kolkata:20261031T170000
+DTEND;TZID=Asia/Kolkata:20261031T190000
+SUMMARY:Unmukt Saturday Open Mic
+LOCATION:Unmukt Studio\, RZ-C/9\, Palam Metro Road\, Palam\, New Delhi 110
+ 045
+DESCRIPTION:Sat 31 Oct 2026 · 5:00 pm – 7:00 pm\n\nThe host opens\, the
+ n performers take the mic in turn — poetry\, a story\, comedy\, a song 
+ — five to eight minutes each. Two and a half hours with a short break.\
+ n\nSource: https://theunmukt.com/events/saturday-open-mic-poetry-storytel
+ ling-spoken-word-and-comedy-E80001497185832
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Unmukt Saturday Open Mic starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR

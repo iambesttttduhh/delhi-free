@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delhi Free//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:dfe-e40-20261108@delhi-free
+DTSTAMP:20261031T073254Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:Diwali on Kartavya Path
+LOCATION:Kartavya Path\, India Gate\, New Delhi 110001
+DESCRIPTION:Sun 8 Nov 2026\n\nPeople walk the length of the path with diya
+ s along the kerb and India Gate lit behind them\, photographing each othe
+ r. In some years a drone show runs overhead around 8 pm.\n\nSource: https
+ ://visitdilli.com/news/diwali-delhi-2026-kartavya-path-not-the-mall
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Diwali on Kartavya Path starts in 2 hours
+END:VALARM
+END:VEVENT
+END:VCALENDAR
