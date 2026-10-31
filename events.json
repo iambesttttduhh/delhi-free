@@ -234,10 +234,10 @@
     "height": "998"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-29",
+    "status": "verified",
+    "last_checked": "2026-10-31",
     "source": "https://www.naturemorte.com/public/exhibitions/the-evolution-of-the-soothsayer-part-2",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "Organiser page confirms 22 October – 12 December 2026 at A9 Gulmohar Park, Mon–Sat 10am–6pm."
    },
    "publication": {
     "status": "published",
@@ -319,10 +319,10 @@
     "height": "1442"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-30",
+    "status": "verified",
+    "last_checked": "2026-10-31",
     "source": "https://cityonview.in/delhi/art-exhibition-delhi/indigo/",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "Listing page confirms 27 October – 1 November 2026 at Bikaner House, CCA Building, curated by Lisa Trivedi and hosted by IGNCA."
    },
    "publication": {
     "status": "published",
@@ -404,10 +404,10 @@
     "height": "1000"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-29",
+    "status": "verified",
+    "last_checked": "2026-10-31",
     "source": "https://www.vadehraart.com/exhibitions/330-rina-banerjee-discriminating-taste-hallucinations-of-the-tongue-d-53-defence-colony-new-delhi/overview/",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "Gallery page marks it \"Ongoing exhibition\", 28 October – 18 November 2026, D-53 Defence Colony, Mon–Sat 10am–6pm."
    },
    "publication": {
     "status": "published",
@@ -901,10 +901,10 @@
     "height": "1201"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-30",
+    "status": "unconfirmed",
+    "last_checked": "2026-10-31",
     "source": "https://globalwildlifefair.info/",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "Date conflict: the fair’s own site says 22 to 24 October 2026, New Delhi, not 30 October – 1 November. Our dates may describe a different edition; not verified."
    },
    "publication": {
     "status": "published",
@@ -1717,10 +1717,10 @@
     "height": "1012"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-29",
+    "status": "unconfirmed",
+    "last_checked": "2026-10-31",
     "source": "https://lalitkala.gov.in/events",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "The Akademi’s events page carries nothing about the 65th National Exhibition; its newest entry is dated July 2026. Could not confirm the 31 October closing date."
    },
    "publication": {
     "status": "published",
@@ -1898,7 +1898,7 @@
    "end": "2026-10-31T19:00:00+05:30",
    "all_day": false,
    "start_time": "17:00",
-   "duration_minutes": 120,
+   "duration_minutes": 150,
    "time_approximate": false,
    "recurrence": null,
    "venue": "Unmukt Studio, Palam",
@@ -1912,7 +1912,7 @@
    },
    "cost": {
     "type": "under_500",
-    "amount_inr": null,
+    "amount_inr": 149,
     "note": "₹149 on BookMyShow. Performers sign up at the desk, subject to slots."
    },
    "format": {
@@ -1960,10 +1960,10 @@
     "height": "1286"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-29",
+    "status": "verified",
+    "last_checked": "2026-10-31",
     "source": "https://theunmukt.com/events/saturday-open-mic-poetry-storytelling-spoken-word-and-comedy-E80001497185832",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "Organiser page confirms Sat 31 October 2026, 5:00–7:30 pm, doors 4:30 pm, Unmukt Studio near Palam metro. Tickets from Rs.149."
    },
    "publication": {
     "status": "published",
@@ -2487,7 +2487,7 @@
    },
    "cost": {
     "type": "under_500",
-    "amount_inr": null,
+    "amount_inr": 199,
     "note": "₹199 on BookMyShow."
    },
    "format": {
@@ -2533,10 +2533,10 @@
     "height": "1350"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-29",
+    "status": "verified",
+    "last_checked": "2026-10-31",
     "source": "https://gigsnshows.com/shows/voices-open-mic-for-poetry-storytelling-spoken-514d2f9abd/",
-    "note": "Not re-checked against the organiser since the date above."
+    "note": "Listing confirms Sun 1 November 2026 at 12 pm, Hideout Studio, Delhi. Tickets from Rs.199, Hindi."
    },
    "publication": {
     "status": "published",
@@ -2774,10 +2774,10 @@
     "height": "1350"
    },
    "verification": {
-    "status": "needs_rechecking",
-    "last_checked": "2026-10-30",
-    "source": "https://iicdelhi.in/",
-    "note": "Not re-checked against the organiser since the date above."
+    "status": "unconfirmed",
+    "last_checked": "2026-10-31",
+    "source": "https://www.goethe.de/ins/in/en/sta/del/ver.cfm",
+    "note": "The Goethe-Institut events page returned \"a system error occurred\" and listed no events. Could not confirm the screening."
    },
    "publication": {
     "status": "published",
