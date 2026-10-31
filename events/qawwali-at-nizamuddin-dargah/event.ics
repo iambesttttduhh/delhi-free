@@ -14,19 +14,19 @@ TZNAME:IST
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:dfe-e7-20261029@delhi-free
-DTSTAMP:20261031T081613Z
-DTSTART;TZID=Asia/Kolkata:20261029T181500
-DTEND;TZID=Asia/Kolkata:20261029T201500
+UID:dfe-e7-20261105@delhi-free
+DTSTAMP:20261031T085916Z
+DTSTART;TZID=Asia/Kolkata:20261105T181500
+DTEND;TZID=Asia/Kolkata:20261105T201500
 SUMMARY:Qawwali at Nizamuddin Dargah
 LOCATION:Hazrat Nizamuddin Auliya Dargah\, Nizamuddin West\, New Delhi 110
  013
-DESCRIPTION:Thu 29 Oct 2026 · 6:15 pm – 8:15 pm (time approximate)\n\nT
- he qawwals sit cross-legged with harmonium\, dholak and tabla and start l
- ow — one voice over a drone — then build verse by verse until the who
- le party is singing and the audience is clapping the beat. People sit on 
- the floor in a ring\; the crowd thickens as it gets louder.\n\nSource: ht
- tps://indiago.app/en/delhi/festivals/
+DESCRIPTION:Thu 5 Nov 2026 · 6:15 pm – 8:15 pm (time approximate)\n\nTh
+ e qawwals sit cross-legged with harmonium\, dholak and tabla and start lo
+ w — one voice over a drone — then build verse by verse until the whol
+ e party is singing and the audience is clapping the beat. People sit on t
+ he floor in a ring\; the crowd thickens as it gets louder.\n\nSource: htt
+ ps://indiago.app/en/delhi/festivals/
 BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY

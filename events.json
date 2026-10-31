@@ -82,7 +82,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "A small gallery you walk through in half an hour."
   },
   {
    "id": "e1",
@@ -162,7 +163,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk the gallery; the inner room is easy to miss and worth finding."
   },
   {
    "id": "e2",
@@ -242,7 +244,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "A walk-through of a small gallery. Twenty to forty minutes, no performance."
   },
   {
    "id": "e3",
@@ -327,7 +330,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk two floors at your own pace. No seating, no schedule, no performance."
   },
   {
    "id": "e4",
@@ -412,7 +416,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk a gallery at your own pace. No seating, no schedule — 30 to 45 minutes."
   },
   {
    "id": "e5",
@@ -496,7 +501,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You're seated in an auditorium for an illustrated lecture of about an hour, then questions. The exhibition is a separate walk-through you do before or after."
   },
   {
    "id": "e6",
@@ -576,7 +582,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You wander a temple hall of stalls — diyas, décor, clothes, sweets. Nothing to sit through and no stage programme."
   },
   {
    "id": "e7",
@@ -661,7 +668,8 @@
    "publication": {
     "status": "published",
     "expired": true
-   }
+   },
+   "gist": "You sit on the floor in a courtyard and listen to live qawwali — harmonium, dholak, tabla and voices — for an hour or more. Standing at the back is fine too."
   },
   {
    "id": "e8",
@@ -746,7 +754,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk around a single reconstructed room and read the labels. Twenty to forty minutes."
   },
   {
    "id": "e9",
@@ -827,7 +836,8 @@
    "publication": {
     "status": "published",
     "expired": true
-   }
+   },
+   "gist": "You're on your feet for about two hours, walking slowly between the tombs and stopping whenever the guide hears something. No seating, no performance."
   },
   {
    "id": "e10",
@@ -909,7 +919,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Self-guided: you walk through halls of wildlife photography, sculpture and stalls at your own pace, and sit in on a panel or workshop if one is running."
   },
   {
    "id": "e11",
@@ -994,7 +1005,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "An open-air market you walk through — 260+ stalls. In the evening there's a stage programme (dandiya, a fashion show, street theatre) that you stand or sit on the grass for."
   },
   {
    "id": "e12",
@@ -1079,7 +1091,8 @@
    "publication": {
     "status": "published",
     "expired": true
-   }
+   },
+   "gist": "You sit — chairs in front, grass behind — for about 90 minutes of Bharatanatyam with live music. Afterwards there's food and a film indoors."
   },
   {
    "id": "e13",
@@ -1159,7 +1172,8 @@
    "publication": {
     "status": "published",
     "expired": true
-   }
+   },
+   "gist": "You sit on amphitheatre steps for an hour-long conversation between an artist and a gallerist, with questions at the end."
   },
   {
    "id": "e14",
@@ -1238,7 +1252,8 @@
    "publication": {
     "status": "published",
     "expired": true
-   }
+   },
+   "gist": "You sit in a circle and talk about a novel. If you haven't read it you can just listen — nobody will put you on the spot."
   },
   {
    "id": "e15",
@@ -1319,7 +1334,8 @@
    "publication": {
     "status": "published",
     "expired": true
-   }
+   },
+   "gist": "Seated in an auditorium for about 90 minutes: singers with harmonium and tabla alternating with straight recitations of Ghalib."
   },
   {
    "id": "e16",
@@ -1399,7 +1415,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Two hours on your feet with frequent stops. The leader points things out and explains them — it's a walk, not a performance."
   },
   {
    "id": "e17",
@@ -1481,7 +1498,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Mixed: a seated panel at 10:30, a gallery you walk through at 11:30, and a poetry reading at 12:30 you sit for."
   },
   {
    "id": "e18",
@@ -1562,7 +1580,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated outdoors for a 75-minute solo set — one woman singing with ektara and duggi, explaining each song as she goes."
   },
   {
    "id": "e19",
@@ -1643,7 +1662,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk around an exhibition of paintings with the young artists beside their work. Optional: a workshop where you paint with them (₹250)."
   },
   {
    "id": "e20",
@@ -1725,7 +1745,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Entirely self-guided — several galleries you walk through at your own pace. No seating, no schedule, no performance."
   },
   {
    "id": "e21",
@@ -1805,7 +1826,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "A working studio you walk around, with prints on tables. Informal — talk to whoever's there."
   },
   {
    "id": "e22",
@@ -1886,7 +1908,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "An indoor hall of 163 stalls you walk through — clothes, jewellery, décor, food, tarot, mehndi. No programme."
   },
   {
    "id": "e23",
@@ -1968,7 +1991,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated for two and a half hours of short performances. You can also sign up at the desk and perform yourself."
   },
   {
    "id": "e24",
@@ -2054,7 +2078,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated on chairs in a park at dawn for about two hours of film songs and semi-classical music. Bring a jacket — it's cold and dark at 6 am."
   },
   {
    "id": "e25",
@@ -2134,7 +2159,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated indoors for about 75 minutes of Hindustani vocal with harmonium and tabla. Films follow in the same building."
   },
   {
    "id": "e26",
@@ -2216,7 +2242,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated outdoors for about an hour of Thai masked dance-drama — the costumes and masks are the spectacle as much as the story."
   },
   {
    "id": "e27",
@@ -2300,7 +2327,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk between tables of fabric, pull pieces out, feel the weave and talk to the weavers. No seating, no stage."
   },
   {
    "id": "e28",
@@ -2381,7 +2409,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "A colony-park mela you wander through, with a small stage playing music in the evening."
   },
   {
    "id": "e29",
@@ -2461,7 +2490,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Entirely self-guided — you squat and dig through books laid on tarpaulin. No programme, no seating."
   },
   {
    "id": "e30",
@@ -2541,7 +2571,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated for about two hours of five-minute sets, mostly Hindi poetry and spoken word."
   },
   {
    "id": "e31",
@@ -2620,7 +2651,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated in an auditorium: a conversation about the instrument, then a live performance on it."
   },
   {
    "id": "e32",
@@ -2701,7 +2733,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated at cafe tables while six poets perform in turn. About two hours."
   },
   {
    "id": "e33",
@@ -2782,7 +2815,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated outdoors for about 75 minutes of solo rudra veena — very slow, very quiet. Not a programme to arrive late to."
   },
   {
    "id": "e34",
@@ -2862,7 +2896,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "One hall of stalls you walk through in under an hour. No programme."
   },
   {
    "id": "e35",
@@ -2943,7 +2978,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated on the lawn for a full-length vocal recital — the festival's closing concert, and its biggest crowd."
   },
   {
    "id": "e36",
@@ -3023,7 +3059,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated for a 105-minute film, then a discussion and questions."
   },
   {
    "id": "e37",
@@ -3102,7 +3139,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "The same market on its last day — walk, feel, buy. Weavers more willing to talk price."
   },
   {
    "id": "e38",
@@ -3183,7 +3221,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated in a small studio theatre for two short classical sets back to back."
   },
   {
    "id": "e39",
@@ -3258,7 +3297,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "A small gallery you walk through in about twenty minutes. Entirely self-guided."
   },
   {
    "id": "e40",
@@ -3339,7 +3379,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk the length of the path with everyone else — no seating, no stage, no programme. Diyas at the kerb and India Gate lit up."
   },
   {
    "id": "e41",
@@ -3424,7 +3465,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You stand at the edge of a ghat and watch families make offerings in the water, with drums and Bhojpuri folk songs throughout. Go as a guest."
   },
   {
    "id": "e42",
@@ -3504,7 +3546,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Self-guided across three floors. No schedule, no seating except benches — you walk and look."
   },
   {
    "id": "e43",
@@ -3585,7 +3628,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated for roughly three hours of poetry recitation, with the audience calling out in response. Breaks in the middle."
   },
   {
    "id": "e44",
@@ -3666,7 +3710,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated on amphitheatre steps for about 90 minutes of morning ragas — master then disciple, with tabla."
   },
   {
    "id": "e45",
@@ -3747,7 +3792,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You walk with the procession or watch it pass, then eat langar at the gurdwara — free food, served to everyone."
   },
   {
    "id": "e46",
@@ -3827,7 +3873,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated for a two-hour panel with audience questions."
   },
   {
    "id": "e47",
@@ -3907,7 +3954,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated in the Stein Auditorium for a dance programme of about ninety minutes."
   },
   {
    "id": "e48",
@@ -3988,7 +4036,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "You take part rather than watch: draw on your phone and see it appear on the wall, get repainted by the AI mirror, walk between installations."
   },
   {
    "id": "e49",
@@ -4074,7 +4123,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated sessions across several stages — you walk between them. Big crowds after 4:30 pm."
   },
   {
    "id": "e50",
@@ -4155,7 +4205,8 @@
    "publication": {
     "status": "published",
     "expired": false
-   }
+   },
+   "gist": "Seated in a hall for two hours of poetry."
   }
  ]
 }

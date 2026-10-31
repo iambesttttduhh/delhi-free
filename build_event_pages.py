@@ -33,6 +33,26 @@ args = ap.parse_args()
 data = json.load(open(args.events, encoding="utf-8"))
 events = data["events"]
 
+# A weekly listing carries the date it was first listed. Roll it forward to the next
+# occurrence at build time, or the page and its calendar file advertise a past evening.
+DAY_NAMES = {"monday": 0, "tuesday": 1, "wednesday": 2, "thursday": 3,
+             "friday": 4, "saturday": 5, "sunday": 6}
+TODAY = date.today()
+for _ev in events:
+    rec = _ev.get("recurrence") or ""
+    m = re.search(r"every\s+(\w+)", rec, re.I)
+    if not m or m.group(1).lower() not in DAY_NAMES:
+        continue
+    target = DAY_NAMES[m.group(1).lower()]
+    st = datetime.fromisoformat(_ev["start"])
+    add = (target - TODAY.weekday()) % 7
+    nxt = TODAY + timedelta(days=add)
+    delta = (nxt - st.date()).days
+    if delta > 0:
+        _ev["start"] = (st + timedelta(days=delta)).isoformat()
+        _ev["end"] = (datetime.fromisoformat(_ev["end"]) + timedelta(days=delta)).isoformat()
+        _ev["recurrence_next"] = f"next on {nxt.strftime('%a %-d %b')}"
+
 
 def esc(s):
     return html.escape(s or "", quote=True)
@@ -83,6 +103,31 @@ def fold(line):
             size += b
     out.append(cur)
     return "\r\n".join(out)
+
+
+
+def gcal_url(ev):
+    """A one-click Google Calendar entry, pre-filled. The visitor still confirms the save."""
+    from urllib.parse import quote
+    s = parse_iso(ev["start"]); e = parse_iso(ev["end"])
+    if ev["all_day"]:
+        end_excl = (e.date() if e else s.date()) + timedelta(days=1)
+        dates = s.strftime("%Y%m%d") + "/" + end_excl.strftime("%Y%m%d")
+        ctz = ""
+    else:
+        from datetime import timezone as _tz
+        utc = _tz(timedelta(hours=5, minutes=30))
+        dates = (s.replace(tzinfo=utc).astimezone(_tz.utc).strftime("%Y%m%dT%H%M%SZ") + "/" +
+                 e.replace(tzinfo=utc).astimezone(_tz.utc).strftime("%Y%m%dT%H%M%SZ"))
+        ctz = "&ctz=Asia%2FKolkata"
+    body = ev["what_happens"] or ev["gist"] or ""
+    if ev["links"]["source"]:
+        body += ("\n\n" if body else "") + "Source: " + ev["links"]["source"]
+    return ("https://calendar.google.com/calendar/render?action=TEMPLATE"
+            "&text=" + quote(ev["title"]) +
+            "&dates=" + dates +
+            "&details=" + quote(body) +
+            "&location=" + quote(ev["address"]) + ctz)
 
 
 def ics(ev):
@@ -226,58 +271,128 @@ FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">"""
 
 
+CSS_B = """
+:root{--paper:#f2f0e9;--card:#fbfaf6;--ink:#0c0c0d;--ink2:#3a3935;--muted:#6b6a63;
+--rule:#cdc9bb;--accent:#ff3b1f;--good:#3f7a24;--warn:#a86200;
+--disp:"Anton",Impact,sans-serif;--body:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
+--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root{--paper:#111110;--card:#161615;--ink:#f4f2ea;
+--ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 72px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+padding:18px 0 10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.top a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+h1{font-family:var(--disp);font-size:clamp(36px,8vw,60px);line-height:.92;margin:14px 0 0;letter-spacing:-.015em}
+.strip{display:flex;gap:0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);margin:16px 0 0}
+.strip div{flex:1;padding:10px 9px;border-right:1px solid var(--rule);min-width:0}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.strip span{font-family:var(--mono);font-size:12px;color:var(--ink);display:block;overflow-wrap:break-word}
+figure{margin:18px 0 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--rule);background:var(--card)}
+.big{font-family:var(--disp);font-size:23px;line-height:1.12;color:var(--ink);margin:20px 0 10px;letter-spacing:.005em}
+.lede{font-size:16.5px;color:var(--ink2);margin:0 0 18px}
+.facts{border-top:1px solid var(--rule);margin:20px 0 0}
+.facts dl{display:grid;grid-template-columns:132px 1fr;gap:0;margin:0}
+.facts dt,.facts dd{margin:0;padding:9px 0;border-bottom:.5px solid var(--rule);font-size:14px}
+.facts dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:11px}
+.facts dd{color:var(--ink2)}
+.facts dl>:nth-last-child(-n+2){border-bottom:0}
+@media (max-width:560px){.facts dl{grid-template-columns:1fr}.facts dt{padding-bottom:0;border-bottom:0}}
+h2{font-family:var(--disp);font-size:21px;margin:32px 0 6px;letter-spacing:.01em}
+p{margin:0 0 14px;color:var(--ink2)}
+ol.run{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+ol.run li{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:7px 0 7px 13px;font-size:14.5px;border-bottom:.5px solid var(--rule)}
+ol.run li:last-child{border-bottom:0}
+ol.run .rt{font-family:var(--mono);font-size:10.5px;color:var(--accent);padding-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0;padding:0;list-style:none}
+.tags li{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);padding:4px 8px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:11px 15px;
+border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card);display:inline-block}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+@media (prefers-color-scheme:dark){.btn.solid{color:#0c0c0d}}
+.trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);
+font-size:10.5px;letter-spacing:.03em;color:var(--muted)}
+.trust b{color:var(--ink);font-weight:500}
+footer{margin-top:40px;border-top:1.5px solid var(--ink);padding-top:12px;font-family:var(--mono);
+font-size:10.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between}
+a{color:var(--ink)}
+"""
+
 def page(ev, asset, canonical_root, ics_href):
+    """Design B: poster. Title, then dates / entry / time, then the photograph, then the detail."""
     url = canonical_root.rstrip("/") + "/events/" + ev["slug"] + "/"
+    s = parse_iso(ev["start"]); e = parse_iso(ev["end"])
+
     photo = ""
     if ev["photo"] and ev["photo"]["src"]:
         photo = (f'<figure><img src="{asset}{esc(ev["photo"]["src"])}" '
                  f'alt="{esc(ev["title"])} — photograph" width="{esc(ev["photo"]["width"] or "")}" '
                  f'height="{esc(ev["photo"]["height"] or "")}" loading="eager" decoding="async"></figure>')
-    facts = []
-    facts.append(("When", date_line(ev) + (" · time approximate" if ev["time_approximate"] else "")))
-    facts.append(("Where", esc(ev["address"])))
+
+    # the three-number strip: dates, entry, time
+    dates_short = (f"{s.day} {MON[s.month-1]} – {e.day} {MON[e.month-1]}" if e and e.date() != s.date()
+                   else f"{s.day} {MON[s.month-1]} {s.year}")
+    entry = {"free": "Free", "under_500": "Under Rs.500"}.get(ev["cost"]["type"], "Ticketed")
+    if ev["all_day"]:
+        hours = "All day"
+    elif e and e.date() != s.date():
+        # a run of days has one opening time, not a start and end across weeks
+        hours = "Opens " + s.strftime("%-I%p").lower()
+    elif e:
+        hours = s.strftime("%-I:%M %p").lower() + " – " + e.strftime("%-I:%M %p").lower()
+    else:
+        hours = s.strftime("%-I:%M %p").lower()
+
+    facts = [("When", date_line(ev) + (" · time approximate" if ev["time_approximate"] else "")),
+             ("Where", esc(ev["address"]))]
     if ev["metro"]:
         facts.append(("Metro", esc(ev["metro"])))
     facts.append(("Entry", esc(cost_line(ev))))
     if ev["recurrence"]:
         facts.append(("Repeats", esc(ev["recurrence"])))
-    facts.append(("Neighbourhood", esc((ev["neighbourhood"] or "").replace("Neighbourhood: ", ""))))
+    if ev["neighbourhood"]:
+        facts.append(("Neighbourhood", esc(ev["neighbourhood"].replace("Neighbourhood: ", ""))))
     fact_html = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in facts if v)
 
     run = ""
     if ev["run_of_show"]:
-        run = "<h2>Run of show</h2><ol class='run'>" + "".join(
+        run = ("<h2>Run of show</h2><ol class='run'>" + "".join(
             f"<li><span class='rt'>{esc(i['time'])}</span><span>{esc(i['what'])}</span></li>"
-            for i in ev["run_of_show"]) + "</ol>"
+            for i in ev["run_of_show"]) + "</ol>")
 
     practical = ""
     if ev["practical"]:
-        # "entry" already appears in the facts block at the top — do not print it twice
         rows = "".join(
             f"<dt>{esc(k.replace('_', ' ').capitalize())}</dt><dd>{esc(v)}</dd>"
             for k, v in ev["practical"].items() if k != "entry")
-        practical = f"<h2>Before you go</h2><div class='facts'><dl>{rows}</dl></div>"
+        if rows:
+            practical = f"<h2>Before you go</h2><div class='facts'><dl>{rows}</dl></div>"
 
     tags = ""
     if ev["categories"]:
         tags = "<ul class='tags'>" + "".join(f"<li>{esc(t)}</li>" for t in ev["categories"]) + "</ul>"
 
     src = ev["links"]["source"]
-    src_line = (f'<a class="btn" href="{esc(src)}" target="_blank" rel="noopener">Source listing</a>'
-                if src else "")
+    src_btn = (f'<a class="btn" href="{esc(src)}" target="_blank" rel="noopener">Source listing</a>'
+               if src else "")
     map_btn = (f'<a class="btn" href="{esc(ev["links"]["map"])}" target="_blank" rel="noopener">Open in Maps</a>'
                if ev["links"]["map"] else "")
+
     status = ev["verification"]["status"]
-    status_note = {
-        "verified": "Checked against the organiser.",
-        "needs_rechecking": "Not yet re-checked against the organiser.",
-        "unconfirmed": "Unconfirmed — treat the details as provisional.",
-        "expired": "This run has ended. The page stays up as a record.",
-        "cancelled": "This event was cancelled.",
+    note = {
+        "verified": "checked against the organiser",
+        "needs_rechecking": "not yet re-checked against the organiser",
+        "unconfirmed": "unconfirmed — treat the details as provisional",
+        "expired": "this run has ended; the page stays as a record",
+        "cancelled": "this event was cancelled",
     }.get(status, "")
     checked = ev["verification"]["last_checked"] or "unknown"
-    trust = (f'Listings change. Last checked <b>{esc(checked)}</b> · status '
-             f'<b>{esc(status.replace("_", " "))}</b> · {esc(status_note)}')
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -295,15 +410,20 @@ def page(ev, asset, canonical_root, ics_href):
 <meta name="twitter:card" content="summary_large_image">
 {FONTS}
 <script type="application/ld+json">{jsonld(ev, url)}</script>
-<style>{CSS}</style>
+<style>{CSS_B}</style>
 </head>
 <body>
 <div class="wrap">
   <div class="top"><a href="{asset}index.html">Delhi, Free</a><span>One event</span></div>
-  <p class="dateline">{esc(date_line(ev))}</p>
   <h1>{esc(ev['title'])}</h1>
-  <p class="lede">{esc(ev['description'] or ev['summary'] or '')}</p>
+  <div class="strip">
+    <div><b>Dates</b><span>{esc(dates_short)}</span></div>
+    <div><b>Entry</b><span>{esc(entry)}</span></div>
+    <div><b>Time</b><span>{esc(hours)}</span></div>
+  </div>
   {photo}
+  {('<p class="big">' + esc(ev['gist']) + '</p>') if ev.get('gist') else ''}
+  <p class="lede">{esc(ev['description'] or ev['summary'] or '')}</p>
   <div class="facts"><dl>{fact_html}</dl></div>
   {('<h2>What happens</h2><p>' + esc(ev['what_happens']) + '</p>') if ev['what_happens'] else ''}
   {run}
@@ -311,12 +431,13 @@ def page(ev, asset, canonical_root, ics_href):
   {practical}
   {tags}
   <div class="actions">
-    <a class="btn solid" href="{esc(ics_href)}">Add to calendar</a>
+    <a class="btn solid" href="{esc(gcal_url(ev))}" target="_blank" rel="noopener">Add to Google Calendar</a>
+    <a class="btn" href="{esc(ics_href)}">Apple / Outlook (.ics)</a>
     {map_btn}
-    {src_line}
+    {src_btn}
     <a class="btn" href="{asset}index.html">All 51 events</a>
   </div>
-  <p class="trust">{trust}</p>
+  <p class="trust">Listings change. Last checked <b>{esc(checked)}</b> · {esc(note)}</p>
   <footer>
     <span>Delhi, Free — free culture across Delhi NCR</span>
     <span>Photographs are shown whole and uncredited by design</span>

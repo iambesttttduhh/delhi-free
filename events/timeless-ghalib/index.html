@@ -24,62 +24,63 @@
 @media (prefers-color-scheme:dark){:root{--paper:#111110;--card:#161615;--ink:#f4f2ea;
 --ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
-font-size:16px;line-height:1.6}
-.wrap{max-width:820px;margin:0 auto;padding:0 20px 72px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 72px}
 .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-padding:20px 0 14px;border-bottom:1.5px solid var(--ink);font-family:var(--mono);
-font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+padding:18px 0 10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
-.top span{color:var(--muted)}
-h1{font-family:var(--disp);font-size:clamp(32px,6vw,54px);line-height:.96;margin:22px 0 10px;
-letter-spacing:-.01em}
-.dateline{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--accent);
-margin:0 0 6px;text-transform:uppercase}
-.lede{font-size:18px;color:var(--ink2);margin:0 0 22px;max-width:60ch}
-figure{margin:0 0 8px}
+h1{font-family:var(--disp);font-size:clamp(36px,8vw,60px);line-height:.92;margin:14px 0 0;letter-spacing:-.015em}
+.strip{display:flex;gap:0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);margin:16px 0 0}
+.strip div{flex:1;padding:10px 9px;border-right:1px solid var(--rule);min-width:0}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.strip span{font-family:var(--mono);font-size:12px;color:var(--ink);display:block;overflow-wrap:break-word}
+figure{margin:18px 0 0}
 figure img{display:block;width:100%;height:auto;border:1px solid var(--rule);background:var(--card)}
-.facts{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:26px 0 8px}
-.facts dl{display:grid;grid-template-columns:150px 1fr;gap:0;margin:0}
+.big{font-family:var(--disp);font-size:23px;line-height:1.12;color:var(--ink);margin:20px 0 10px;letter-spacing:.005em}
+.lede{font-size:16.5px;color:var(--ink2);margin:0 0 18px}
+.facts{border-top:1px solid var(--rule);margin:20px 0 0}
+.facts dl{display:grid;grid-template-columns:132px 1fr;gap:0;margin:0}
 .facts dt,.facts dd{margin:0;padding:9px 0;border-bottom:.5px solid var(--rule);font-size:14px}
-.facts dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-color:var(--muted);padding-top:11px}
+.facts dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:11px}
 .facts dd{color:var(--ink2)}
 .facts dl>:nth-last-child(-n+2){border-bottom:0}
-@media(max-width:600px){.facts dl{grid-template-columns:1fr}.facts dt{padding-bottom:0;border-bottom:0}}
-h2{font-family:var(--disp);font-size:22px;margin:34px 0 6px;letter-spacing:.01em}
-h2 em{font-style:normal;color:var(--accent)}
+@media (max-width:560px){.facts dl{grid-template-columns:1fr}.facts dt{padding-bottom:0;border-bottom:0}}
+h2{font-family:var(--disp);font-size:21px;margin:32px 0 6px;letter-spacing:.01em}
 p{margin:0 0 14px;color:var(--ink2)}
 ol.run{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
-ol.run li{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:7px 0 7px 14px;
-font-size:14.5px;border-bottom:.5px solid var(--rule)}
+ol.run li{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:7px 0 7px 13px;font-size:14.5px;border-bottom:.5px solid var(--rule)}
 ol.run li:last-child{border-bottom:0}
-ol.run .rt{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.04em;padding-top:2px}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0;padding:0;list-style:none}
-.tags li{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-border:1px solid var(--rule);padding:4px 8px;color:var(--muted)}
+ol.run .rt{font-family:var(--mono);font-size:10.5px;color:var(--accent);padding-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0;padding:0;list-style:none}
+.tags li{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);padding:4px 8px;color:var(--muted)}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0}
-.btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-padding:10px 15px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card)}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:11px 15px;
+border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card);display:inline-block}
 .btn:hover{background:var(--ink);color:var(--paper)}
 .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink)}
 @media (prefers-color-scheme:dark){.btn.solid{color:#0c0c0d}}
-.trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);
-font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
-.trust b{color:var(--warn);font-weight:500}
-footer{margin-top:40px;border-top:1.5px solid var(--ink);padding-top:12px;
-font-family:var(--mono);font-size:10.5px;color:var(--muted);display:flex;flex-wrap:wrap;
-gap:6px 20px;justify-content:space-between}
+.trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);
+font-size:10.5px;letter-spacing:.03em;color:var(--muted)}
+.trust b{color:var(--ink);font-weight:500}
+footer{margin-top:40px;border-top:1.5px solid var(--ink);padding-top:12px;font-family:var(--mono);
+font-size:10.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between}
 a{color:var(--ink)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top"><a href="../../index.html">Delhi, Free</a><span>One event</span></div>
-  <p class="dateline">Fri 30 Oct 2026 · 7:30 pm – 9:30 pm</p>
   <h1>Timeless Ghalib</h1>
-  <p class="lede">Ghalib&#x27;s ghazals — love, loss, faith, drink, and Delhi&#x27;s decline in the 1850s, in the verses most people know by heart.</p>
+  <div class="strip">
+    <div><b>Dates</b><span>30 Oct 2026</span></div>
+    <div><b>Entry</b><span>Free</span></div>
+    <div><b>Time</b><span>7:30 pm – 9:30 pm</span></div>
+  </div>
   <figure><img src="../../img/p17-900.webp" alt="Timeless Ghalib — photograph" width="1800" height="1350" loading="eager" decoding="async"></figure>
+  <p class="big">Seated in an auditorium for about 90 minutes: singers with harmonium and tabla alternating with straight recitations of Ghalib.</p>
+  <p class="lede">Ghalib&#x27;s ghazals — love, loss, faith, drink, and Delhi&#x27;s decline in the 1850s, in the verses most people know by heart.</p>
   <div class="facts"><dl><dt>When</dt><dd>Fri 30 Oct 2026 · 7:30 pm – 9:30 pm</dd><dt>Where</dt><dd>Stein Auditorium, India Habitat Centre, Lodhi Road, New Delhi 110003</dd><dt>Metro</dt><dd>Jor Bagh · Yellow · ~14 min walk</dd><dt>Entry</dt><dd>Usually free — confirm on 4366 3080 / 85 / 90.</dd><dt>Neighbourhood</dt><dd>Lodhi Road</dd></dl></div>
   <h2>What happens</h2><p>A staged evening of ghazals: singers with harmonium and tabla alternating with straight recitations, built around Ghalib&#x27;s best-known verses, with a compere linking one to the next.</p>
   <h2>Run of show</h2><ol class='run'><li><span class='rt'>7:30 pm</span><span>Ghazals sung and recited in alternation</span></li><li><span class='rt'>through</span><span>A compere links one verse to the next</span></li><li><span class='rt'>~9:00 pm</span><span>Close</span></li></ol>
@@ -87,12 +88,13 @@ a{color:var(--ink)}
   <h2>Before you go</h2><div class='facts'><dl><dt>Getting there</dt><dd>Jor Bagh (Yellow) or Khan Market (Violet).</dd><dt>How long</dt><dd>About 90 minutes.</dd><dt>Worth knowing</dt><dd>The Stein is inside the main complex past the atrium, not visible from Lodhi Road.</dd></dl></div>
   <ul class='tags'><li>Ghazal singing</li><li>Recitation</li><li>Live music</li></ul>
   <div class="actions">
-    <a class="btn solid" href="event.ics">Add to calendar</a>
+    <a class="btn solid" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Timeless%20Ghalib&amp;dates=20261030T140000Z/20261030T160000Z&amp;details=A%20staged%20evening%20of%20ghazals%3A%20singers%20with%20harmonium%20and%20tabla%20alternating%20with%20straight%20recitations%2C%20built%20around%20Ghalib%27s%20best-known%20verses%2C%20with%20a%20compere%20linking%20one%20to%20the%20next.%0A%0ASource%3A%20https%3A//indiahabitat.org/Events&amp;location=Stein%20Auditorium%2C%20India%20Habitat%20Centre%2C%20Lodhi%20Road%2C%20New%20Delhi%20110003&amp;ctz=Asia%2FKolkata" target="_blank" rel="noopener">Add to Google Calendar</a>
+    <a class="btn" href="event.ics">Apple / Outlook (.ics)</a>
     <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;amp;query=India+Habitat+Centre%2C+Lodhi+Road%2C+New+Delhi+110003" target="_blank" rel="noopener">Open in Maps</a>
     <a class="btn" href="https://indiahabitat.org/Events" target="_blank" rel="noopener">Source listing</a>
     <a class="btn" href="../../index.html">All 51 events</a>
   </div>
-  <p class="trust">Listings change. Last checked <b>2026-10-29</b> · status <b>expired</b> · This run has ended. The page stays up as a record.</p>
+  <p class="trust">Listings change. Last checked <b>2026-10-29</b> · this run has ended; the page stays as a record</p>
   <footer>
     <span>Delhi, Free — free culture across Delhi NCR</span>
     <span>Photographs are shown whole and uncredited by design</span>
