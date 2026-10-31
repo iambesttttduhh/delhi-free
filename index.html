@@ -6193,6 +6193,62 @@ h1,.stair .l1,.stair .l2{
     hero.setAttribute('title', pick.name + ' · ' + pick.credit + ' · ' + pick.licence);
   })();
 
+
+  /* ---------------- keep a long-open tab fresh ----------------
+     A tab left open overnight would otherwise keep showing yesterday's photo
+     and yesterday's "still to come" list. Two triggers:
+       · the calendar day has changed  -> reload
+       · the tab sat hidden for 90 min -> reload
+     Scroll position is stashed and restored, so a forced refresh never dumps
+     someone back to the top of a list they were reading. */
+  (function keepFresh() {
+    function dayIndex(d) {
+      return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+    }
+    var loadedDay = dayIndex(new Date());
+    var hiddenAt = 0;
+    var LONG_AWAY = 90 * 60 * 1000;
+
+    /* remember where they were */
+    try {
+      var saved = sessionStorage.getItem('dfe-scroll');
+      if (saved !== null) {
+        var y = parseInt(saved, 10);
+        sessionStorage.removeItem('dfe-scroll');
+        if (!isNaN(y) && y > 0) {
+          requestAnimationFrame(function () { window.scrollTo(0, y); });
+        }
+      }
+    } catch (e) {}
+
+    function reloadKeepingPlace() {
+      try {
+        sessionStorage.setItem('dfe-scroll', String(window.scrollY));
+        sessionStorage.setItem('dfe-reloaded', String(Date.now()));
+      } catch (e) {}
+      location.reload();
+    }
+
+    /* don't reload twice in quick succession */
+    try {
+      var last = parseInt(sessionStorage.getItem('dfe-reloaded') || '0', 10);
+      if (last && Date.now() - last < 5000) return;
+    } catch (e) {}
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { hiddenAt = Date.now(); return; }
+      var away = hiddenAt ? Date.now() - hiddenAt : 0;
+      hiddenAt = 0;
+      if (dayIndex(new Date()) !== loadedDay || away > LONG_AWAY) reloadKeepingPlace();
+    });
+
+    /* a tab left visible for hours still crosses midnight — swap the photo in
+       place rather than reloading under someone's cursor */
+    setInterval(function () {
+      if (dayIndex(new Date()) !== loadedDay) reloadKeepingPlace();
+    }, 10 * 60 * 1000);
+  })();
+
   /* ---------------- theme ---------------- */
   var THEME_KEY = 'dfe-theme';
   function applyTheme(t) {
