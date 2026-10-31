@@ -6182,9 +6182,21 @@ h1,.stair .l1,.stair .l2{
 
     var hero = document.querySelector('.hero');
     if (!hero) return;
+    /* The single-file build carries the hero as a <div> painted with a
+       background-image; the deployed build swaps it for a real <img> when the
+       photographs are extracted. Both have to be handled, or the caption
+       changes while the picture stays put. */
     var shot = hero.querySelector('.shot');
     if (shot) {
-      shot.style.backgroundImage = 'url("' + pick.src + '")';
+      if (shot.tagName === 'IMG') {
+        shot.removeAttribute('srcset');
+        shot.removeAttribute('sizes');
+        shot.src = pick.src;
+        shot.width = pick.w;
+        shot.height = pick.h;
+      } else {
+        shot.style.backgroundImage = 'url("' + pick.src + '")';
+      }
       shot.style.aspectRatio = pick.w + '/' + pick.h;
     }
     var cap = hero.querySelector('.herocaption span');
