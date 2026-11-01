@@ -660,10 +660,10 @@
     "height": "1200"
    },
    "verification": {
-    "status": "expired",
+    "status": "needs_rechecking",
     "last_checked": "2026-10-29",
     "source": "https://indiago.app/en/delhi/festivals/",
-    "note": "Run has ended; kept as a record."
+    "note": "Weekly listing; the page rolls to the next occurrence."
    },
    "publication": {
     "status": "published",

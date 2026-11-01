@@ -264,6 +264,11 @@ padding:10px 15px;border:1px solid var(--ink);color:var(--ink);text-decoration:n
 .btn:hover{background:var(--ink);color:var(--paper)}
 .btn.solid{background:var(--accent);border-color:var(--accent);color:var(--onsolid)}
 
+.endedbar{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:11px;
+line-height:1.6;letter-spacing:.02em;padding:10px 14px;margin:0 0 4px}
+.endedbar b{font-weight:700}
+.endedbar a{color:var(--accent)}
+.is-ended .actions .btn.solid{background:var(--rule);border-color:var(--rule);color:var(--ink2)}
 .trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);
 font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
 .trust b{color:var(--warn);font-weight:500}
@@ -364,6 +369,26 @@ THEME_JS = """<script>
 """
 
 
+RUN_JS = """<script>
+(function () {
+  /* if this page was built a while ago, the run may have ended since — say so
+     without waiting for the next rebuild */
+  var endEl = document.querySelector('[data-run-end]');
+  if (!endEl) return;
+  var end = endEl.getAttribute('data-run-end');
+  if (!end) return;
+  var today = new Date();
+  var t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  if (new Date(end + 'T23:59:59') < t) {
+    var b = document.querySelector('.endedbar');
+    if (b) b.hidden = false;
+    document.body.classList.add('is-ended');
+  }
+})();
+</script>
+"""
+
+
 def page(ev, asset, canonical_root, ics_href):
     """Design B: poster. Title, then dates / entry / time, then the photograph, then the detail."""
     url = canonical_root.rstrip("/") + "/events/" + ev["slug"] + "/"
@@ -424,6 +449,8 @@ def page(ev, asset, canonical_root, ics_href):
     map_btn = (f'<a class="btn" href="{esc(ev["links"]["map"])}" target="_blank" rel="noopener">Open in Maps</a>'
                if ev["links"]["map"] else "")
 
+    run_end = (ev["end"] or ev["start"] or "")[:10]
+    ended = run_end < date.today().isoformat()
     status = ev["verification"]["status"]
     note = {
         "verified": "checked against the organiser",
@@ -454,6 +481,9 @@ def page(ev, asset, canonical_root, ics_href):
 </head>
 <body>
 <div class="wrap">
+  <div class="endedbar" data-run-end="{esc(run_end)}"{'' if ended else ' hidden'}>
+    <b>This run has ended</b> — it finished on {esc(run_end)}. The page stays up as a record; for what is on now, <a href="{asset}index.html">see the list</a>.
+  </div>
   <div class="top">
     <a href="{asset}index.html">Delhi, Free</a>
     <span class="row"><span>One event</span>
@@ -482,13 +512,14 @@ def page(ev, asset, canonical_root, ics_href):
     {src_btn}
     <a class="btn" href="{asset}index.html">All 51 events</a>
   </div>
-  <p class="trust">Listings change. Last checked <b>{esc(checked)}</b> · {esc(note)}</p>
+  <p class="trust">Listings change. Last checked <b>{esc(checked)}</b> · {esc(note)}{' · run ended ' + esc(run_end) if ended else ''}</p>
   <footer>
     <span>Delhi, Free — free culture across Delhi NCR</span>
     <span>Photographs are shown whole and uncredited by design</span>
   </footer>
 </div>
 {THEME_JS}
+{RUN_JS}
 </body>
 </html>
 """

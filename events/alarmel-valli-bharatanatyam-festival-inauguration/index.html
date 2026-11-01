@@ -78,6 +78,9 @@ a{color:var(--ink)}
 </head>
 <body>
 <div class="wrap">
+  <div class="endedbar" data-run-end="2026-10-30">
+    <b>This run has ended</b> — it finished on 2026-10-30. The page stays up as a record; for what is on now, <a href="../../index.html">see the list</a>.
+  </div>
   <div class="top">
     <a href="../../index.html">Delhi, Free</a>
     <span class="row"><span>One event</span>
@@ -106,7 +109,7 @@ a{color:var(--ink)}
     <a class="btn" href="https://iicdelhi.in/" target="_blank" rel="noopener">Source listing</a>
     <a class="btn" href="../../index.html">All 51 events</a>
   </div>
-  <p class="trust">Listings change. Last checked <b>2026-10-30</b> · this run has ended; the page stays as a record</p>
+  <p class="trust">Listings change. Last checked <b>2026-10-30</b> · this run has ended; the page stays as a record · run ended 2026-10-30</p>
   <footer>
     <span>Delhi, Free — free culture across Delhi NCR</span>
     <span>Photographs are shown whole and uncredited by design</span>
@@ -133,6 +136,24 @@ a{color:var(--ink)}
     try { localStorage.setItem(KEY, next); } catch (e) {}
     label();
   });
+})();
+</script>
+
+<script>
+(function () {
+  /* if this page was built a while ago, the run may have ended since — say so
+     without waiting for the next rebuild */
+  var endEl = document.querySelector('[data-run-end]');
+  if (!endEl) return;
+  var end = endEl.getAttribute('data-run-end');
+  if (!end) return;
+  var today = new Date();
+  var t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  if (new Date(end + 'T23:59:59') < t) {
+    var b = document.querySelector('.endedbar');
+    if (b) b.hidden = false;
+    document.body.classList.add('is-ended');
+  }
 })();
 </script>
 
