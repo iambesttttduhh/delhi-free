@@ -212,10 +212,13 @@ def jsonld(ev, url):
 CSS = """
 :root{--paper:#f2f0e9;--card:#fbfaf6;--ink:#0c0c0d;--ink2:#3a3935;--muted:#6b6a63;
 --rule:#cdc9bb;--accent:#ff3b1f;--good:#3f7a24;--warn:#a86200;
---disp:"Anton",Impact,sans-serif;--body:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
+--onsolid:#fff;--disp:"Anton",Impact,sans-serif;--body:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
 --mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root{--paper:#111110;--card:#161615;--ink:#f4f2ea;
---ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c}}
+[data-theme="dark"]{--paper:#111110;--card:#161615;--ink:#f4f2ea;--ink2:#cfcdc4;
+--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c;--onsolid:#0c0c0d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111110;--card:#161615;
+--ink:#f4f2ea;--ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;
+--warn:#f0b23c;--onsolid:#0c0c0d}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
 font-size:16px;line-height:1.6}
@@ -224,6 +227,10 @@ font-size:16px;line-height:1.6}
 padding:20px 0 14px;border-bottom:1.5px solid var(--ink);font-family:var(--mono);
 font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
 .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+.top .row{display:flex;align-items:baseline;gap:14px}
+.themebtn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--rule);padding:4px 9px;cursor:pointer}
+.themebtn:hover{color:var(--ink);border-color:var(--ink)}
+.themebtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .top span{color:var(--muted)}
 h1{font-family:var(--disp);font-size:clamp(32px,6vw,54px);line-height:.96;margin:22px 0 10px;
 letter-spacing:-.01em}
@@ -255,8 +262,8 @@ border:1px solid var(--rule);padding:4px 8px;color:var(--muted)}
 .btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
 padding:10px 15px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card)}
 .btn:hover{background:var(--ink);color:var(--paper)}
-.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
-@media (prefers-color-scheme:dark){.btn.solid{color:#0c0c0d}}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--onsolid)}
+
 .trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);
 font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
 .trust b{color:var(--warn);font-weight:500}
@@ -273,17 +280,24 @@ FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 
 CSS_B = """
 :root{--paper:#f2f0e9;--card:#fbfaf6;--ink:#0c0c0d;--ink2:#3a3935;--muted:#6b6a63;
---rule:#cdc9bb;--accent:#ff3b1f;--good:#3f7a24;--warn:#a86200;
+--rule:#cdc9bb;--accent:#ff3b1f;--good:#3f7a24;--warn:#a86200;--onsolid:#fff;
 --disp:"Anton",Impact,sans-serif;--body:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
 --mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root{--paper:#111110;--card:#161615;--ink:#f4f2ea;
---ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c}}
+[data-theme="dark"]{--paper:#111110;--card:#161615;--ink:#f4f2ea;--ink2:#cfcdc4;
+--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c;--onsolid:#0c0c0d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111110;--card:#161615;
+--ink:#f4f2ea;--ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;
+--warn:#f0b23c;--onsolid:#0c0c0d}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px 72px}
 .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
 padding:18px 0 10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+.top .row{display:flex;align-items:baseline;gap:14px}
+.themebtn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--rule);padding:4px 9px;cursor:pointer}
+.themebtn:hover{color:var(--ink);border-color:var(--ink)}
+.themebtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 h1{font-family:var(--disp);font-size:clamp(36px,8vw,60px);line-height:.92;margin:14px 0 0;letter-spacing:-.015em}
 .strip{display:flex;gap:0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);margin:16px 0 0}
 .strip div{flex:1;padding:10px 9px;border-right:1px solid var(--rule);min-width:0}
@@ -313,9 +327,9 @@ ol.run .rt{font-family:var(--mono);font-size:10.5px;color:var(--accent);padding-
 .btn{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:11px 15px;
 border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card);display:inline-block}
 .btn:hover{background:var(--ink);color:var(--paper)}
-.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--onsolid)}
 .btn.solid:hover{background:var(--ink);border-color:var(--ink)}
-@media (prefers-color-scheme:dark){.btn.solid{color:#0c0c0d}}
+
 .trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);
 font-size:10.5px;letter-spacing:.03em;color:var(--muted)}
 .trust b{color:var(--ink);font-weight:500}
@@ -323,6 +337,32 @@ footer{margin-top:40px;border-top:1.5px solid var(--ink);padding-top:12px;font-f
 font-size:10.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between}
 a{color:var(--ink)}
 """
+
+THEME_JS = """<script>
+(function () {
+  var KEY = 'dfe-theme';
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  if (!btn) return;
+  function systemDark() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function current() {
+    return root.getAttribute('data-theme') || (systemDark() ? 'dark' : 'light');
+  }
+  function label() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+  try { var saved = localStorage.getItem(KEY); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  label();
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    label();
+  });
+})();
+</script>
+"""
+
 
 def page(ev, asset, canonical_root, ics_href):
     """Design B: poster. Title, then dates / entry / time, then the photograph, then the detail."""
@@ -414,7 +454,12 @@ def page(ev, asset, canonical_root, ics_href):
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><a href="{asset}index.html">Delhi, Free</a><span>One event</span></div>
+  <div class="top">
+    <a href="{asset}index.html">Delhi, Free</a>
+    <span class="row"><span>One event</span>
+      <button class="themebtn" id="themeBtn" type="button" aria-label="Switch between light and dark">Dark</button>
+    </span>
+  </div>
   <h1>{esc(ev['title'])}</h1>
   <div class="strip">
     <div><b>Dates</b><span>{esc(dates_short)}</span></div>
@@ -443,6 +488,7 @@ def page(ev, asset, canonical_root, ics_href):
     <span>Photographs are shown whole and uncredited by design</span>
   </footer>
 </div>
+{THEME_JS}
 </body>
 </html>
 """

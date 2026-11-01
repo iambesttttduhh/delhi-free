@@ -18,17 +18,24 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "EXCHANGE — G.R. Iranna with Renu Modi", "startDate": "2026-10-30T17:30:00+05:30", "endDate": "2026-10-30T19:30:00+05:30", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "url": "https://iambesttttduhh.github.io/delhi-free/events/exchange-g-r-iranna-with-renu-modi/", "description": "How an artist's practice changes over a career — what the work was, what it became, and what it costs to keep going.", "location": {"@type": "Place", "name": "Triveni Kala Sangam", "address": {"@type": "PostalAddress", "streetAddress": "Triveni Amphitheatre, Triveni Kala Sangam, 205 Tansen Marg, New Delhi 110001", "addressLocality": "New Delhi", "addressRegion": "Delhi", "addressCountry": "IN"}, "geo": {"@type": "GeoCoordinates", "latitude": 28.6255, "longitude": 77.2345}}, "organizer": {"@type": "Organization", "name": "Triveni Kala Sangam", "url": "https://www.trivenikalasangam.org/events/a693cc6e-0000-4b16-9b73-76c7e9508765"}, "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock"}, "image": "https://iambesttttduhh.github.io/delhi-free/img/p15-900.webp"}</script>
 <style>
 :root{--paper:#f2f0e9;--card:#fbfaf6;--ink:#0c0c0d;--ink2:#3a3935;--muted:#6b6a63;
---rule:#cdc9bb;--accent:#ff3b1f;--good:#3f7a24;--warn:#a86200;
+--rule:#cdc9bb;--accent:#ff3b1f;--good:#3f7a24;--warn:#a86200;--onsolid:#fff;
 --disp:"Anton",Impact,sans-serif;--body:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
 --mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root{--paper:#111110;--card:#161615;--ink:#f4f2ea;
---ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c}}
+[data-theme="dark"]{--paper:#111110;--card:#161615;--ink:#f4f2ea;--ink2:#cfcdc4;
+--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;--warn:#f0b23c;--onsolid:#0c0c0d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111110;--card:#161615;
+--ink:#f4f2ea;--ink2:#cfcdc4;--muted:#9a978c;--rule:#34332f;--accent:#c8ff2e;--good:#a8e06a;
+--warn:#f0b23c;--onsolid:#0c0c0d}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px 72px}
 .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
 padding:18px 0 10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .top a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+.top .row{display:flex;align-items:baseline;gap:14px}
+.themebtn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--rule);padding:4px 9px;cursor:pointer}
+.themebtn:hover{color:var(--ink);border-color:var(--ink)}
+.themebtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 h1{font-family:var(--disp);font-size:clamp(36px,8vw,60px);line-height:.92;margin:14px 0 0;letter-spacing:-.015em}
 .strip{display:flex;gap:0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);margin:16px 0 0}
 .strip div{flex:1;padding:10px 9px;border-right:1px solid var(--rule);min-width:0}
@@ -58,9 +65,9 @@ ol.run .rt{font-family:var(--mono);font-size:10.5px;color:var(--accent);padding-
 .btn{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:11px 15px;
 border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card);display:inline-block}
 .btn:hover{background:var(--ink);color:var(--paper)}
-.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--onsolid)}
 .btn.solid:hover{background:var(--ink);border-color:var(--ink)}
-@media (prefers-color-scheme:dark){.btn.solid{color:#0c0c0d}}
+
 .trust{margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);
 font-size:10.5px;letter-spacing:.03em;color:var(--muted)}
 .trust b{color:var(--ink);font-weight:500}
@@ -71,7 +78,12 @@ a{color:var(--ink)}
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><a href="../../index.html">Delhi, Free</a><span>One event</span></div>
+  <div class="top">
+    <a href="../../index.html">Delhi, Free</a>
+    <span class="row"><span>One event</span>
+      <button class="themebtn" id="themeBtn" type="button" aria-label="Switch between light and dark">Dark</button>
+    </span>
+  </div>
   <h1>EXCHANGE — G.R. Iranna with Renu Modi</h1>
   <div class="strip">
     <div><b>Dates</b><span>30 Oct 2026</span></div>
@@ -100,5 +112,29 @@ a{color:var(--ink)}
     <span>Photographs are shown whole and uncredited by design</span>
   </footer>
 </div>
+<script>
+(function () {
+  var KEY = 'dfe-theme';
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  if (!btn) return;
+  function systemDark() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function current() {
+    return root.getAttribute('data-theme') || (systemDark() ? 'dark' : 'light');
+  }
+  function label() { btn.textContent = current() === 'dark' ? 'Light' : 'Dark'; }
+  try { var saved = localStorage.getItem(KEY); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  label();
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    label();
+  });
+})();
+</script>
+
 </body>
 </html>
